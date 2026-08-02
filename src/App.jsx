@@ -7,7 +7,7 @@ function App() {
       
       {/* NAVIGATION BAR */}
       <nav className="flex justify-between items-center px-8 lg:px-16 py-8 w-full font-mono text-lg">
-        <div className="font-bold tracking-wide flex items-baseline gap-1 text-2xl font-sans">
+        <div className="font-bold tracking-wide flex items-center gap-3 text-2xl font-sans">
           Austria
           <span className="w-2 h-2 rounded-full bg-neon"></span>
         </div>
@@ -28,11 +28,11 @@ function App() {
         <div className="flex-1 space-y-8 z-10 lg:pl-20">
           <div className="space-y-4">
             <p className="text-gray-400 text-lg lg:text-xl font-mono tracking-wide">Fullstack Developer</p>
-            <h1 className="text-5xl lg:text-[4.5rem] font-bold leading-[1.05] tracking-tight font-mono">
-              Hello I'm <br />
-              <span className="group/name relative inline-block overflow-hidden cursor-default px-2 py-1 mt-1">
-                <span className="relative z-10 transition-colors duration-500 text-neon group-hover/name:text-black">
-                  AUSTRIA JOHN GWEN ISAAC
+            <h1 className="text-5xl lg:text-[4.5rem] font-bold leading-[1.05] tracking-tight font-mono flex flex-col">
+              <span>Hello I'm</span>
+              <span className="group/name relative inline-block overflow-hidden cursor-default px-3 py-1 mt-2 w-fit">
+                <span className="relative z-10 transition-colors duration-500 text-neon group-hover/name:text-black block">
+                  AUSTRIA JOHN <br/> GWEN ISAAC
                 </span>
                 <span className="absolute inset-0 bg-neon -translate-x-[105%] group-hover/name:translate-x-0 transition-transform duration-500 ease-in-out z-0"></span>
               </span>
@@ -75,11 +75,12 @@ function App() {
       </main>
 
       {/* LOWER SCROLLABLE BACKGROUND WRAPPER */}
-      <div className="bg-[#0b0c13] relative z-20 w-full">
+      <div className="relative z-20 w-full pb-8">
         
         {/* STATS SECTION */}
-        <section className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 border-b border-gray-800">
-          <div className="group flex flex-wrap justify-between items-center gap-8 md:gap-4">
+        {/* Removed min-h-[80vh] and reduced padding to py-16 */}
+        <section className="max-w-[1400px] mx-auto flex flex-col justify-center px-8 lg:px-12 py-16 bg-transparent">
+          <div className="group flex flex-col md:flex-row justify-between items-center gap-16 md:gap-8 w-full">
             <StatItem number="22" label="Age" />
             <StatItem number="2" label={<span>Years of<br/>experience</span>} />
             <StatItem number="9" label={<span>Personal<br/>projects</span>} />
@@ -87,16 +88,19 @@ function App() {
           </div>
         </section>
 
-        {/* SELECTED WORK SECTION (Added max-w-[1200px] and side padding) */}
-        <section className="max-w-[1200px] mx-auto py-24 px-8 lg:px-12">
+        {/* SELECTED WORK SECTION */}
+        {/* Reduced padding from py-32 to py-16 */}
+        <section className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 bg-transparent">
           <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-6">
             <span className="w-12 h-[1px] bg-gray-700"></span>
             Selected Work
           </div>
           
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-            <h2 className="text-4xl lg:text-5xl font-bold font-sans">Some of my personal projects</h2>
-            <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-neon transition-colors font-mono">
+            <h2 className="text-4xl lg:text-5xl font-bold font-sans">
+              Some of my <span className="text-neon">personal projects</span>
+            </h2>
+            <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-neon transition-colors font-mono pb-1">
               All projects <FiArrowUpRight />
             </a>
           </div>
@@ -123,8 +127,9 @@ function App() {
           </div>
         </section>
 
-        {/* WHAT I DO SECTION (Added max-w-[1200px] and side padding) */}
-        <section className="max-w-[1200px] mx-auto py-24 px-8 lg:px-12">
+        {/* WHAT I DO SECTION */}
+        {/* Reduced padding from py-24 to py-16 */}
+        <section className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 bg-transparent">
           <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12">
             <span className="w-12 h-[1px] bg-gray-700"></span>
             What I Do
@@ -150,40 +155,31 @@ function App() {
         </section>
 
         {/* FOOTER & CTA */}
-        <footer className="max-w-[1200px] mx-auto pt-32 pb-12 px-8 lg:px-12 mt-12">
+        {/* Reduced top padding significantly and brought items closer together */}
+        <footer className="w-full pt-16 pb-8 bg-transparent">
           
-          <div className="flex flex-col items-center justify-center text-center space-y-8 pb-32">
-            <h2 className="text-4xl lg:text-6xl font-bold font-sans flex items-center gap-2">
-              Have something worth building<span className="text-neon">?</span>
+          <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 pb-20 px-8">
+            <h2 className="text-5xl lg:text-7xl font-bold font-sans flex items-center gap-3">
+              Let's <span className="text-neon">Connect</span>
             </h2>
-            <p className="text-gray-400 font-mono text-lg">Open to new-grad roles and problems worth the effort.</p>
-            <button className="px-8 py-4 border border-gray-600 rounded-lg font-mono text-gray-300 hover:bg-neon hover:text-black hover:border-neon transition-all duration-300">
-              Get in touch
+            <p className="text-gray-400 font-mono text-lg max-w-2xl leading-relaxed">
+              I'm always open to discussing new grad opportunities, exciting projects, or partnership requests. Drop a message and let's build something great together!
+            </p>
+            <button className="px-10 py-4 border-2 border-neon rounded-full font-mono text-neon hover:bg-neon hover:text-black transition-all duration-300 mt-4 text-lg font-bold tracking-wide">
+              Send an email
             </button>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 font-mono text-sm text-gray-500">
-            <div>
-              <p className="font-bold text-white mb-2">austria<span className="text-neon">.</span>john</p>
-              <p>Software Engineer, Obando, Philippines</p>
-              <p className="mt-8">© 2026 John Gwen Isaac</p>
+          <div className="w-full max-w-[1700px] mx-auto px-8 lg:px-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="text-xl font-bold font-mono tracking-wider text-gray-400 hover:text-neon transition-colors cursor-default">
+              John Gwen Isaac Austria
             </div>
             
-            <div className="flex gap-12">
-              <div className="flex flex-col gap-2">
-                <a href="#" className="hover:text-neon transition-colors">Projects</a>
-                <a href="#" className="hover:text-neon transition-colors">Work</a>
-                <a href="#" className="hover:text-neon transition-colors">About</a>
-              </div>
-              <div className="flex flex-col gap-2">
-                <a href="#" className="hover:text-neon transition-colors">GitHub</a>
-                <a href="#" className="hover:text-neon transition-colors">LinkedIn</a>
-                <a href="#" className="hover:text-neon transition-colors">Email</a>
-              </div>
-            </div>
-
-            <div className="md:text-right">
-              <p className="mt-8 md:mt-0">Designed and built from scratch.</p>
+            <div className="flex gap-4">
+              <SocialIcon href="mailto:your.email@example.com"><FiMail size={20} /></SocialIcon>
+              <SocialIcon href="https://github.com"><FiGithub size={20} /></SocialIcon>
+              <SocialIcon href="https://linkedin.com"><FiLinkedin size={20} /></SocialIcon>
+              <SocialIcon href="https://instagram.com"><FiInstagram size={20} /></SocialIcon>
             </div>
           </div>
         </footer>
@@ -212,9 +208,9 @@ function SocialIcon({ href, children }) {
 
 function StatItem({ number, label }) {
   return (
-    <div className="flex items-center gap-4 transition-all duration-300 group-hover:blur-sm hover:!blur-none hover:scale-110 cursor-default">
-      <span className="text-6xl lg:text-7xl font-bold font-mono">{number}</span>
-      <span className="text-sm font-mono text-gray-400 leading-tight">{label}</span>
+    <div className="flex items-center gap-4 transition-all duration-500 group-hover:blur-md hover:!blur-none hover:scale-[1.4] relative z-10 hover:z-20 cursor-default px-4">
+      <span className="text-8xl lg:text-[10rem] font-bold font-mono tracking-tighter text-white drop-shadow-lg">{number}</span>
+      <span className="text-lg lg:text-xl font-mono text-gray-400 leading-snug">{label}</span>
     </div>
   );
 }
@@ -228,13 +224,13 @@ function ProjectCard({ title, year, description, active }) {
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
         </div>
-        <div className="h-48 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center">
+        <div className="h-56 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center">
           <span className="text-gray-700 font-mono text-sm opacity-50">Image Preview</span>
         </div>
       </div>
       <div className="mt-6 space-y-2">
         <div className="flex justify-between items-center font-sans">
-          <h3 className="text-2xl font-bold">{title}</h3>
+          <h3 className="text-2xl font-bold group-hover:text-neon transition-colors">{title}</h3>
           <span className="font-mono text-gray-500 text-sm">{year}</span>
         </div>
         <p className="text-gray-400 font-sans text-lg">{description}</p>
@@ -251,10 +247,10 @@ function ProjectCard({ title, year, description, active }) {
 
 function ServiceRow({ num, title, desc }) {
   return (
-    <div className="border-t border-gray-800 py-10 flex flex-col md:flex-row md:items-center gap-6 hover:bg-[#11121a] transition-colors -mx-4 px-4 rounded-xl cursor-pointer">
+    <div className="py-12 flex flex-col md:flex-row md:items-center gap-6 hover:bg-[#11121a] transition-colors -mx-4 px-4 rounded-xl cursor-pointer">
       <div className="text-neon font-mono text-sm w-12 pt-1 md:pt-0">{num}</div>
-      <h3 className="text-2xl font-bold font-sans w-full md:w-1/3">{title}</h3>
-      <p className="text-gray-400 font-sans text-lg w-full md:w-2/3 leading-relaxed">{desc}</p>
+      <h3 className="text-3xl font-bold font-sans w-full md:w-1/3">{title}</h3>
+      <p className="text-gray-400 font-sans text-xl w-full md:w-2/3 leading-relaxed">{desc}</p>
     </div>
   );
 }
