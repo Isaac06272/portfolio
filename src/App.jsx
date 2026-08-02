@@ -45,7 +45,7 @@ function App() {
                   : 'text-gray-400 hover:text-white border-transparent'
               }`}
             >
-              {item === 'Work' ? 'Projects' : item} {/* Display 'Projects' instead of 'Work' at the top for consistency if you prefer */}
+              {item === 'Work' ? 'Projects' : item}
             </a>
           ))}
         </div>
@@ -265,24 +265,27 @@ function StatItem({ number, label }) {
 
 function ProjectCard({ title, year, description, active }) {
   return (
-    <div className="flex flex-col group cursor-pointer transition-all duration-500 hover:-translate-y-4 hover:rotate-1 hover:shadow-[0_15px_40px_-15px_rgba(0,229,255,0.2)] rounded-xl">
+    <div className="flex flex-col group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl">
       <div className="bg-[#11121a] rounded-xl overflow-hidden border border-gray-800 group-hover:border-neon transition-colors duration-300">
         <div className="flex gap-2 px-4 py-3 bg-[#0d0e15] border-b border-gray-800">
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
         </div>
-        <div className="h-56 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center">
+        
+        <div className="h-64 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center">
           <span className="text-gray-700 font-mono text-sm opacity-50">Image Preview</span>
         </div>
       </div>
-      <div className="mt-6 space-y-2 px-2">
+      
+      {/* TEXT SECTION FIX: Added px-4 (horizontal padding) and mt-8 (more top margin) to pull text away from the edges */}
+      <div className="mt-8 space-y-3 px-4 pb-4">
         <div className="flex justify-between items-center font-sans">
-          <h3 className="text-2xl font-bold group-hover:text-neon transition-colors">{title}</h3>
+          <h3 className="text-xl font-bold group-hover:text-neon transition-colors">{title}</h3>
           <span className="font-mono text-gray-500 text-sm">{year}</span>
         </div>
-        <p className="text-gray-400 font-sans text-lg">{description}</p>
-        <div className="flex items-center gap-2 font-mono text-sm pt-2">
+        <p className="text-gray-400 font-sans text-base leading-relaxed">{description}</p>
+        <div className="flex items-center gap-2 font-mono text-xs pt-3">
           <div className={`w-2 h-2 rounded-full ${active ? 'bg-neon' : 'bg-gray-600'}`}></div>
           <span className={active ? 'text-neon' : 'text-gray-500'}>
             {active ? 'Actively maintained' : 'Deployed but not maintained'}
