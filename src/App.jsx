@@ -107,81 +107,87 @@ function App() {
       {/* LOWER SCROLLABLE BACKGROUND WRAPPER */}
       <div className="relative z-20 w-full pb-8">
         
-        {/* STATS SECTION */}
-        <section className="max-w-[1400px] mx-auto flex flex-col justify-center px-8 lg:px-12 py-16 bg-transparent">
-          <div className="group flex flex-col md:flex-row justify-between items-center gap-16 md:gap-8 w-full">
-            <StatItem number="22" label="Age" />
-            <StatItem number="2" label={<span>Years of<br/>experience</span>} />
-            <StatItem number="9" label={<span>Personal<br/>projects</span>} />
-            <StatItem number="2" label={<span>Companies<br/>interned</span>} />
-          </div>
-        </section>
+        {/* STATS SECTION (Fades OUT the grid lines by transitioning to solid color) */}
+        <div className="w-full bg-gradient-to-b from-[#0b0c13]/0 to-[#0b0c13]">
+          <section className="max-w-[1400px] mx-auto flex flex-col justify-center px-8 lg:px-12 py-16">
+            <div className="group flex flex-col md:flex-row justify-between items-center gap-16 md:gap-8 w-full">
+              <StatItem number="22" label="Age" />
+              <StatItem number="2" label={<span>Years of<br/>experience</span>} />
+              <StatItem number="9" label={<span>Personal<br/>projects</span>} />
+              <StatItem number="2" label={<span>Companies<br/>interned</span>} />
+            </div>
+          </section>
+        </div>
 
-        {/* SELECTED WORK SECTION */}
-        <section id="projects" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 bg-transparent">
-          <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-6">
-            <span className="w-12 h-[1px] bg-gray-700"></span>
-            Selected Work
-          </div>
-          
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-            <h2 className="text-4xl lg:text-5xl font-bold font-sans">
-              Some of my <span className="text-neon">personal projects</span>
-            </h2>
-            <a className="flex items-center gap-2 text-gray-400 hover:text-neon transition-colors font-mono pb-1 cursor-pointer">
-              All projects <FiArrowUpRight />
-            </a>
-          </div>
+        {/* SELECTED WORK SECTION (Solid color, completely hides grid lines) */}
+        <div className="w-full bg-[#0b0c13]">
+          <section id="projects" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12">
+            <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-6">
+              <span className="w-12 h-[1px] bg-gray-700"></span>
+              Selected Work
+            </div>
+            
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+              <h2 className="text-4xl lg:text-5xl font-bold font-sans">
+                Some of my <span className="text-neon">personal projects</span>
+              </h2>
+              <a className="flex items-center gap-2 text-gray-400 hover:text-neon transition-colors font-mono pb-1 cursor-pointer">
+                All projects <FiArrowUpRight />
+              </a>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ProjectCard 
-              title="Nappr" 
-              year="2026"
-              description="Location-based alarm application with real-time geofencing and notifications."
-              active={true}
-            />
-            <ProjectCard 
-              title="QuizCraft" 
-              year="2026"
-              description="AI-powered study platform that provides customized quizzes and flashcard decks."
-              active={true}
-            />
-            <ProjectCard 
-              title="IskoMate" 
-              year="2026"
-              description="Real-time student engagement detection system using trained AI models."
-              active={false}
-            />
-          </div>
-        </section>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <ProjectCard 
+                title="Nappr" 
+                year="2026"
+                description="Location-based alarm application with real-time geofencing and notifications."
+                active={true}
+              />
+              <ProjectCard 
+                title="QuizCraft" 
+                year="2026"
+                description="AI-powered study platform that provides customized quizzes and flashcard decks."
+                active={true}
+              />
+              <ProjectCard 
+                title="IskoMate" 
+                year="2026"
+                description="Real-time student engagement detection system using trained AI models."
+                active={false}
+              />
+            </div>
+          </section>
+        </div>
 
-        {/* WHAT I DO SECTION */}
-        <section id="services" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 bg-transparent">
-          <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12">
-            <span className="w-12 h-[1px] bg-gray-700"></span>
-            What I Do
-          </div>
+        {/* WHAT I DO SECTION (Fades IN the grid lines by transitioning to transparent) */}
+        <div className="w-full bg-gradient-to-b from-[#0b0c13] to-[#0b0c13]/0">
+          <section id="services" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12">
+            <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12">
+              <span className="w-12 h-[1px] bg-gray-700"></span>
+              What I Do
+            </div>
 
-          <div className="flex flex-col">
-            <ServiceRow 
-              num="01" 
-              title="AI Engineering & Deployment" 
-              desc="Training custom ML models, managing the end-to-end deployment lifecycle, and integrating scalable APIs for personal works." 
-            />
-            <ServiceRow 
-              num="02" 
-              title="ML Infrastructure" 
-              desc="Building the server environments, edge networks, and data pipelines required to keep AI running reliably.." 
-            />
-            <ServiceRow 
-              num="03" 
-              title="Software Development" 
-              desc="Developing modern, cross-platform web and mobile applications with highly interactive user interfaces." 
-            />
-          </div>
-        </section>
+            <div className="flex flex-col">
+              <ServiceRow 
+                num="01" 
+                title="AI Engineering & Deployment" 
+                desc="Training custom ML models, managing the end-to-end deployment lifecycle, and integrating scalable APIs for personal works." 
+              />
+              <ServiceRow 
+                num="02" 
+                title="ML Infrastructure" 
+                desc="Building the server environments, edge networks, and data pipelines required to keep AI running reliably." 
+              />
+              <ServiceRow 
+                num="03" 
+                title="Software Development" 
+                desc="Developing modern, cross-platform web and mobile applications with highly interactive user interfaces." 
+              />
+            </div>
+          </section>
+        </div>
 
-        {/* FOOTER & CTA */}
+        {/* FOOTER & CTA (Transparent background, grid is fully visible again) */}
         <footer id="contact" className="w-full pt-16 pb-8 bg-transparent">
           
           <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 pb-20 px-8">
@@ -278,7 +284,6 @@ function ProjectCard({ title, year, description, active }) {
         </div>
       </div>
       
-      {/* TEXT SECTION FIX: Added px-4 (horizontal padding) and mt-8 (more top margin) to pull text away from the edges */}
       <div className="mt-8 space-y-3 px-4 pb-4">
         <div className="flex justify-between items-center font-sans">
           <h3 className="text-xl font-bold group-hover:text-neon transition-colors">{title}</h3>
