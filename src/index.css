@@ -23,3 +23,23 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Custom Theme Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-darkBg);
+  border-left: 1px solid #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon);
+  box-shadow: 0 0 10px var(--color-neon);
+}
