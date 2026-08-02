@@ -165,18 +165,18 @@ function App() {
           <div className="flex flex-col">
             <ServiceRow 
               num="01" 
-              title="Machine Learning" 
-              desc="Training and deploying computer vision models for real-time edge devices." 
+              title="AI Engineering & Deployment" 
+              desc="Training custom ML models, managing the end-to-end deployment lifecycle, and integrating scalable APIs for personal works." 
             />
             <ServiceRow 
               num="02" 
-              title="Systems & Infrastructure" 
-              desc="Configuring secure networks, Tailscale tunnels, and Linux server environments." 
+              title="ML Infrastructure" 
+              desc="Building the server environments, edge networks, and data pipelines required to keep AI running reliably.." 
             />
             <ServiceRow 
               num="03" 
-              title="Application Development" 
-              desc="Building cross-platform apps in Flutter with complex, scalable UI components." 
+              title="Software Development" 
+              desc="Developing modern, cross-platform web and mobile applications with highly interactive user interfaces." 
             />
           </div>
         </section>
