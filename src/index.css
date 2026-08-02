@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Space+Grotesk:wght@400;700&display=swap');
+
+@theme {
+  /* Changed to Neon Blue */
+  --color-neon: #00e5ff;
+  --color-darkBg: #0b0c13;
+  --font-mono: 'Fira Code', monospace;
+  --font-sans: 'Space Grotesk', sans-serif;
+}
+
+body {
+  background-color: var(--color-darkBg);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  color: white;
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+html {
+  scroll-behavior: smooth;
+}
