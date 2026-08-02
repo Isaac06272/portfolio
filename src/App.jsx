@@ -4,6 +4,8 @@ import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight } from 'react
 function App() {
   // State to track if we should show the floating nav
   const [showNav, setShowNav] = useState(false);
+  // State to track the currently selected navigation tab
+  const [activeTab, setActiveTab] = useState('Home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,9 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Helper array for navigation items to keep the code clean
+  const navItems = ['Home', 'Work', 'Services', 'Contact'];
+
   return (
     <div className="w-full text-white bg-transparent">
       
@@ -30,10 +35,19 @@ function App() {
         </div>
         
         <div className="hidden md:flex gap-10">
-          <a href="#home" className="text-neon border-b-2 border-neon pb-1 cursor-pointer">Home</a>
-          <a href="#projects" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Projects</a>
-          <a href="#services" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Services</a>
-          <a href="#contact" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Contact</a>
+          {navItems.map((item) => (
+            <a 
+              key={item}
+              onClick={() => setActiveTab(item)}
+              className={`pb-1 cursor-pointer transition-colors border-b-2 ${
+                activeTab === item 
+                  ? 'text-neon border-neon' 
+                  : 'text-gray-400 hover:text-white border-transparent'
+              }`}
+            >
+              {item === 'Work' ? 'Projects' : item} {/* Display 'Projects' instead of 'Work' at the top for consistency if you prefer */}
+            </a>
+          ))}
         </div>
       </nav>
 
@@ -104,7 +118,7 @@ function App() {
         </section>
 
         {/* SELECTED WORK SECTION */}
-        <section id="projects" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 bg-transparent scroll-mt-24">
+        <section id="projects" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 bg-transparent">
           <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-6">
             <span className="w-12 h-[1px] bg-gray-700"></span>
             Selected Work
@@ -114,7 +128,7 @@ function App() {
             <h2 className="text-4xl lg:text-5xl font-bold font-sans">
               Some of my <span className="text-neon">personal projects</span>
             </h2>
-            <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-neon transition-colors font-mono pb-1">
+            <a className="flex items-center gap-2 text-gray-400 hover:text-neon transition-colors font-mono pb-1 cursor-pointer">
               All projects <FiArrowUpRight />
             </a>
           </div>
@@ -142,7 +156,7 @@ function App() {
         </section>
 
         {/* WHAT I DO SECTION */}
-        <section id="services" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 bg-transparent scroll-mt-24">
+        <section id="services" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12 bg-transparent">
           <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12">
             <span className="w-12 h-[1px] bg-gray-700"></span>
             What I Do
@@ -168,7 +182,7 @@ function App() {
         </section>
 
         {/* FOOTER & CTA */}
-        <footer id="contact" className="w-full pt-16 pb-8 bg-transparent scroll-mt-24">
+        <footer id="contact" className="w-full pt-16 pb-8 bg-transparent">
           
           <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 pb-20 px-8">
             <h2 className="text-5xl lg:text-7xl font-bold font-sans flex items-center gap-3">
@@ -203,10 +217,19 @@ function App() {
         className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out ${showNav ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0 pointer-events-none'}`}
       >
         <div className="flex items-center gap-2 px-4 py-2 bg-[#0b0c13]/70 backdrop-blur-md border border-gray-800 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-          <a href="#home" className="px-5 py-2.5 text-sm font-mono text-gray-400 hover:text-neon transition-all rounded-full hover:bg-white/5">Home</a>
-          <a href="#projects" className="px-5 py-2.5 text-sm font-mono text-gray-400 hover:text-neon transition-all rounded-full hover:bg-white/5">Work</a>
-          <a href="#services" className="px-5 py-2.5 text-sm font-mono text-gray-400 hover:text-neon transition-all rounded-full hover:bg-white/5">Services</a>
-          <a href="#contact" className="px-5 py-2.5 text-sm font-mono text-neon transition-all rounded-full border border-neon bg-neon/10">Contact</a>
+          {navItems.map((item) => (
+            <a 
+              key={item}
+              onClick={() => setActiveTab(item)}
+              className={`cursor-pointer px-5 py-2.5 text-sm font-mono transition-all rounded-full border ${
+                activeTab === item
+                  ? 'text-neon border-neon bg-neon/10'
+                  : 'text-gray-400 border-transparent hover:text-neon hover:bg-white/5'
+              }`}
+            >
+              {item}
+            </a>
+          ))}
         </div>
       </div>
 
