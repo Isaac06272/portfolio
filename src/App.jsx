@@ -58,7 +58,7 @@ function App() {
               <span>Hello I'm</span>
               <span className="group/name relative inline-block overflow-hidden cursor-default px-3 py-1 mt-2 w-fit">
                 <span className="relative z-10 transition-colors duration-500 text-neon group-hover/name:text-black block">
-                  AUSTRIA JOHN <br/> GWEN ISAAC
+                  Austria <br/>John Gwen Isaac
                 </span>
                 <span className="absolute inset-0 bg-neon -translate-x-[105%] group-hover/name:translate-x-0 transition-transform duration-500 ease-in-out z-0"></span>
               </span>
