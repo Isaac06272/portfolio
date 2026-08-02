@@ -395,7 +395,7 @@ function CertificationsContent() {
   );
 }
 
-// 4. ABOUT / CONTACT PAGE
+// 4. ABOUT PAGE
 function AboutContent() {
   return (
     <div className="w-full min-h-screen pb-16 relative z-10">
@@ -405,7 +405,7 @@ function AboutContent() {
           About Me
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
           {/* Bio Text */}
           <div className="flex flex-col justify-center">
             <h1 className="text-5xl lg:text-7xl font-bold font-sans mb-8 leading-tight">
@@ -419,7 +419,7 @@ function AboutContent() {
             </p>
             <div className="pt-4">
               <button className="flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono w-fit">
-                <span className="text-sm font-semibold tracking-wider uppercase">Download Resume</span>
+                <span className="text-sm font-semibold tracking-wider uppercase">Download CV</span>
               </button>
             </div>
           </div>
@@ -442,8 +442,8 @@ function AboutContent() {
         </div>
       </section>
 
-      {/* Reusing Contact Section at bottom */}
-      <ContactSection />
+      {/* Styled Form for the About page */}
+      <AboutContactForm />
     </div>
   );
 }
@@ -451,6 +451,59 @@ function AboutContent() {
 /* =========================================
    HELPER COMPONENTS
    ========================================= */
+
+// UPDATED COMPONENT: Matches site aesthetic
+function AboutContactForm() {
+  return (
+    <div className="max-w-[800px] mx-auto w-full px-8 pb-32 pt-16">
+      
+      <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12 justify-center">
+        <span className="w-12 h-[1px] bg-gray-700"></span>
+        Get in Touch
+        <span className="w-12 h-[1px] bg-gray-700"></span>
+      </div>
+      
+      <form className="flex flex-col gap-8" onSubmit={(e) => e.preventDefault()}>
+        
+        <div className="flex flex-col md:flex-row gap-8">
+          <div className="flex flex-col gap-3 flex-1 group">
+            <label className="text-gray-400 font-mono text-sm uppercase tracking-wider group-focus-within:text-neon transition-colors">Name</label>
+            <input 
+              type="text" 
+              placeholder="Your secret identity"
+              className="bg-[#11121a]/80 backdrop-blur-sm border border-gray-800/80 rounded-xl px-5 py-4 text-base text-white focus:outline-none focus:border-neon transition-colors placeholder-gray-600 w-full font-sans"
+            />
+          </div>
+          <div className="flex flex-col gap-3 flex-1 group">
+            <label className="text-gray-400 font-mono text-sm uppercase tracking-wider group-focus-within:text-neon transition-colors">Email Address</label>
+            <input 
+              type="email" 
+              placeholder="I won't spam you, I promise"
+              className="bg-[#11121a]/80 backdrop-blur-sm border border-gray-800/80 rounded-xl px-5 py-4 text-base text-white focus:outline-none focus:border-neon transition-colors placeholder-gray-600 w-full font-sans"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 group">
+          <label className="text-gray-400 font-mono text-sm uppercase tracking-wider group-focus-within:text-neon transition-colors">Content</label>
+          <textarea 
+            placeholder="Your message goes here"
+            rows="6"
+            className="bg-[#11121a]/80 backdrop-blur-sm border border-gray-800/80 rounded-xl px-5 py-4 text-base text-white focus:outline-none focus:border-neon transition-colors placeholder-gray-600 w-full resize-y font-sans"
+          ></textarea>
+        </div>
+
+        <button 
+          type="submit"
+          className="mt-4 w-full px-10 py-5 border-2 border-neon rounded-xl font-mono text-neon hover:bg-neon hover:text-black transition-all duration-300 text-lg font-bold tracking-wide flex justify-center items-center gap-3 group"
+        >
+          Send Email <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+        </button>
+
+      </form>
+    </div>
+  );
+}
 
 function SkillCategory({ title, skills }) {
   return (
@@ -469,6 +522,7 @@ function SkillCategory({ title, skills }) {
   );
 }
 
+// ORIGINAL COMPONENT: Kept here for the Home page
 function ContactSection() {
   return (
     <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 px-8 pb-12 pt-16">
