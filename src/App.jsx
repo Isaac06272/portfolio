@@ -21,10 +21,15 @@ function App() {
   const navItems = ['Home', 'Projects', 'Certifications', 'About'];
 
   return (
-    <div className="w-full text-white bg-transparent min-h-screen flex flex-col">
+    <div className="w-full text-white bg-[#0b0c13] min-h-screen flex flex-col relative selection:bg-neon selection:text-black">
       
+      {/* GLOBAL GRID BACKGROUND */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f30_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f30_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:linear-gradient(to_bottom,black_0%,transparent_15%,transparent_85%,black_100%)]"></div>
+      </div>
+
       {/* NAVIGATION BAR (Top) */}
-      <nav className="flex justify-between items-center px-8 lg:px-16 py-8 w-full font-mono text-lg z-50">
+      <nav className="flex justify-between items-center px-8 lg:px-16 py-8 w-full font-mono text-lg z-50 relative">
         <div 
           onClick={() => {
             setActiveTab('Home');
@@ -57,7 +62,7 @@ function App() {
       </nav>
 
       {/* PAGE ROUTING (Conditional Rendering) */}
-      <div className="flex-grow">
+      <div className="flex-grow relative z-10">
         {activeTab === 'Home' && <HomeContent setActiveTab={setActiveTab} />}
         {activeTab === 'Projects' && <ProjectsContent />}
         {activeTab === 'Certifications' && <CertificationsContent />}
@@ -65,7 +70,7 @@ function App() {
       </div>
 
       {/* GLOBAL FOOTER (Simple bar for all pages) */}
-      <footer className="w-full max-w-[1700px] mx-auto px-8 lg:px-16 py-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-gray-800 mt-auto">
+      <footer className="w-full max-w-[1700px] mx-auto px-8 lg:px-16 py-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-gray-800 mt-auto relative z-10 bg-[#0b0c13]/80 backdrop-blur-sm">
         <div className="text-xl font-bold font-mono tracking-wider text-gray-400 hover:text-neon transition-colors cursor-default">
           John Gwen Isaac Austria
         </div>
@@ -159,7 +164,7 @@ function HomeContent({ setActiveTab }) {
       </main>
 
       <div className="relative z-20 w-full pb-8">
-        <div className="w-full bg-gradient-to-b from-[#0b0c13]/0 to-[#0b0c13]">
+        <div className="w-full bg-gradient-to-b from-[#0b0c13]/0 via-[#0b0c13] to-[#0b0c13]/0">
           <section className="max-w-[1400px] mx-auto flex flex-col justify-center px-8 lg:px-12 py-16">
             <div className="group flex flex-col md:flex-row justify-between items-center gap-16 md:gap-8 w-full">
               <StatItem number="22" label="Age" />
@@ -170,7 +175,7 @@ function HomeContent({ setActiveTab }) {
           </section>
         </div>
 
-        <div className="w-full bg-[#0b0c13]">
+        <div className="w-full bg-transparent">
           <section className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12">
             <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-6">
               <span className="w-12 h-[1px] bg-gray-700"></span>
@@ -218,7 +223,7 @@ function HomeContent({ setActiveTab }) {
         </div>
 
         {/* WHAT I DO SECTION */}
-        <div className="w-full bg-gradient-to-b from-[#0b0c13] to-[#0b0c13]/0">
+        <div className="w-full bg-transparent">
           <section className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12">
             <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12">
               <span className="w-12 h-[1px] bg-gray-700"></span>
@@ -256,7 +261,7 @@ function HomeContent({ setActiveTab }) {
 // 2. PROJECTS PAGE
 function ProjectsContent() {
   return (
-    <div className="w-full bg-[#0b0c13] min-h-screen pb-16">
+    <div className="w-full bg-transparent min-h-screen pb-16">
       
       <section className="max-w-[1200px] mx-auto pt-24 pb-16 px-8 lg:px-12">
         <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-8">
@@ -309,7 +314,7 @@ function ProjectsContent() {
       </section>
 
       {/* More Work Grid */}
-      <section className="max-w-[1200px] mx-auto pt-32 pb-16 px-8 lg:px-12 border-t border-gray-800 mt-16">
+      <section className="max-w-[1200px] mx-auto pt-32 pb-16 px-8 lg:px-12 border-t border-gray-800/50 mt-16">
         <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-16">
           <span className="w-12 h-[1px] bg-gray-700"></span>
           More Work
@@ -321,21 +326,21 @@ function ProjectsContent() {
             year="2026"
             description="Interactive Flutter data visualization components. Features dynamic zoom-in and zoom-out for timeline graphs."
             active={true}
-            imgSrc="timeline.jpg"
+            imgSrc="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
           />
           <ProjectCard 
             title="Hardware Toolkit" 
             year="2025"
             description="Arduino and microcontroller interface frameworks for rapid prototyping of sensor-based IoT systems."
             active={false}
-            imgSrc="hardware.jpg"
+            imgSrc="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
           />
           <ProjectCard 
             title="SecureBank" 
             year="2025"
             description="A containerized Next.js banking environment intentionally built with vulnerabilities to test security penetration tools."
             active={false}
-            imgSrc="securebank.jpg"
+            imgSrc="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=800&auto=format&fit=crop"
           />
         </div>
       </section>
@@ -346,7 +351,7 @@ function ProjectsContent() {
 // 3. CERTIFICATIONS PAGE
 function CertificationsContent() {
   return (
-    <div className="w-full bg-[#0b0c13] min-h-[70vh] pb-16">
+    <div className="w-full bg-transparent min-h-[70vh] pb-16">
       <section className="max-w-[1200px] mx-auto pt-24 px-8 lg:px-12">
         <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-8">
           <span className="w-12 h-[1px] bg-gray-700"></span>
@@ -359,7 +364,7 @@ function CertificationsContent() {
           A collection of my technical certifications, industry credentials, and continuous learning achievements in AI, Cloud, and Software Engineering.
         </p>
         
-        <div className="flex flex-col border-t border-gray-800">
+        <div className="flex flex-col border-t border-gray-800/50">
           <CertificationRow 
             year="2026" 
             title="AWS Certified Machine Learning – Specialty" 
@@ -393,11 +398,51 @@ function CertificationsContent() {
 // 4. ABOUT / CONTACT PAGE
 function AboutContent() {
   return (
-    <div className="w-full min-h-[75vh] flex flex-col justify-center items-center">
-      <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-8">
-        <span className="w-12 h-[1px] bg-gray-700"></span>
-        About & Contact
-      </div>
+    <div className="w-full min-h-screen pb-16 relative z-10">
+      <section className="max-w-[1200px] mx-auto pt-24 px-8 lg:px-12">
+        <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-8">
+          <span className="w-12 h-[1px] bg-gray-700"></span>
+          About Me
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
+          {/* Bio Text */}
+          <div className="flex flex-col justify-center">
+            <h1 className="text-5xl lg:text-7xl font-bold font-sans mb-8 leading-tight">
+              Engineering <br /> <span className="text-neon">at the edge.</span>
+            </h1>
+            <p className="text-gray-400 text-lg leading-relaxed mb-6">
+              I'm an academic student in Computer Engineering with a strong focus on hands-on software development, network protocols, and hardware experimentation.
+            </p>
+            <p className="text-gray-400 text-lg leading-relaxed mb-6">
+              Whether I'm developing real-time computer vision models for edge devices like the Raspberry Pi, routing protocols over Tailscale, or building scalable cross-platform applications in Flutter, I love bridging the gap between physical hardware and intuitive software.
+            </p>
+            <div className="pt-4">
+              <button className="flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono w-fit">
+                <span className="text-sm font-semibold tracking-wider uppercase">Download Resume</span>
+              </button>
+            </div>
+          </div>
+          
+          {/* Skills Grid */}
+          <div className="flex flex-col justify-center gap-8 lg:pl-10">
+            <SkillCategory 
+              title="Languages" 
+              skills={['Python', 'Dart', 'JavaScript', 'TypeScript', 'C++']} 
+            />
+            <SkillCategory 
+              title="Frameworks & Libraries" 
+              skills={['Flutter', 'React', 'Node.js', 'TensorFlow', 'OpenCV']} 
+            />
+            <SkillCategory 
+              title="Tools & Hardware" 
+              skills={['Raspberry Pi', 'Arduino', 'Tailscale', 'AWS Cloud', 'MongoDB']} 
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Reusing Contact Section at bottom */}
       <ContactSection />
     </div>
   );
@@ -407,9 +452,26 @@ function AboutContent() {
    HELPER COMPONENTS
    ========================================= */
 
+function SkillCategory({ title, skills }) {
+  return (
+    <div className="bg-[#11121a]/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800/80 hover:border-neon transition-colors duration-300">
+      <h3 className="text-xl font-bold font-sans mb-4 text-white flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-neon"></span> {title}
+      </h3>
+      <div className="flex flex-wrap gap-3">
+        {skills.map((skill) => (
+          <span key={skill} className="px-4 py-1.5 bg-[#0b0c13] border border-gray-700/80 rounded-full text-sm font-mono text-gray-300 hover:text-neon hover:border-neon transition-all cursor-default">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ContactSection() {
   return (
-    <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 px-8 pb-12">
+    <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 px-8 pb-12 pt-16">
       <h2 className="text-5xl lg:text-7xl font-bold font-sans flex items-center gap-3">
         Let's <span className="text-neon">Connect!</span>
       </h2>
@@ -485,7 +547,7 @@ function SocialIcon({ href, children }) {
       href={href} 
       target="_blank" 
       rel="noopener noreferrer" 
-      className="p-2.5 rounded-full border-2 border-neon text-neon hover:text-black hover:bg-neon transition-colors duration-150 flex items-center justify-center"
+      className="p-2.5 rounded-full border-2 border-neon text-neon hover:text-black hover:bg-neon transition-colors duration-150 flex items-center justify-center bg-[#0b0c13]"
     >
       {children}
     </a>
@@ -504,7 +566,7 @@ function StatItem({ number, label }) {
 function ProjectCard({ title, year, description, active, imgSrc }) {
   return (
     <div className="flex flex-col h-full group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl">
-      <div className="bg-[#11121a] rounded-xl overflow-hidden border border-gray-800 group-hover:border-neon transition-colors duration-300">
+      <div className="bg-[#11121a]/80 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/80 group-hover:border-neon transition-colors duration-300">
         <div className="flex gap-2 px-4 py-3 bg-[#0d0e15] border-b border-gray-800 z-10 relative">
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
@@ -512,7 +574,7 @@ function ProjectCard({ title, year, description, active, imgSrc }) {
         </div>
         <div className="h-64 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center overflow-hidden relative">
           {imgSrc ? (
-            <img src={imgSrc} alt={`${title} preview`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img src={imgSrc} alt={`${title} preview`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
           ) : (
             <span className="text-gray-700 font-mono text-sm opacity-50">Image Preview</span>
           )}
@@ -537,7 +599,7 @@ function ProjectCard({ title, year, description, active, imgSrc }) {
 
 function ServiceRow({ num, title, desc }) {
   return (
-    <div className="py-12 flex flex-col md:flex-row md:items-start gap-4 hover:bg-[#11121a] transition-colors border-b border-gray-800 -mx-4 px-4 cursor-default">
+    <div className="py-12 flex flex-col md:flex-row md:items-start gap-4 hover:bg-[#11121a]/50 transition-colors border-b border-gray-800/50 -mx-4 px-4 cursor-default rounded-xl">
       <div className="text-neon font-mono text-sm w-12 pt-1">{num}</div>
       <h3 className="text-xl lg:text-2xl font-bold font-sans w-full md:w-1/3 pt-0.5">{title}</h3>
       <p className="text-gray-400 font-sans text-base lg:text-lg w-full md:w-2/3 leading-relaxed">{desc}</p>
@@ -547,7 +609,7 @@ function ServiceRow({ num, title, desc }) {
 
 function CertificationRow({ year, title, issuer, desc }) {
   return (
-    <div className="py-12 flex flex-col md:flex-row md:items-start gap-6 hover:bg-[#11121a] transition-colors border-b border-gray-800 -mx-4 px-4 cursor-default group">
+    <div className="py-12 flex flex-col md:flex-row md:items-start gap-6 hover:bg-[#11121a]/50 transition-colors border-b border-gray-800/50 -mx-4 px-4 cursor-default group rounded-xl">
       <div className="text-neon font-mono text-sm w-20 pt-1">{year}</div>
       <div className="w-full md:w-1/3 flex flex-col">
         <h3 className="text-xl lg:text-2xl font-bold font-sans group-hover:text-neon transition-colors">{title}</h3>
