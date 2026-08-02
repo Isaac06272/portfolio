@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight } from 'react-icons/fi';
 
 function App() {
-  // State to track if we should show the floating nav
   const [showNav, setShowNav] = useState(false);
-  // State to track the currently selected navigation tab
   const [activeTab, setActiveTab] = useState('Home');
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show nav after scrolling down 300px
       if (window.scrollY > 300) {
         setShowNav(true);
       } else {
@@ -21,8 +18,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Helper array for navigation items to keep the code clean
-  const navItems = ['Home', 'Work', 'Services', 'Contact'];
+  const navItems = ['Home', 'Projects', 'Services', 'Contact'];
 
   return (
     <div className="w-full text-white bg-transparent">
@@ -107,7 +103,7 @@ function App() {
       {/* LOWER SCROLLABLE BACKGROUND WRAPPER */}
       <div className="relative z-20 w-full pb-8">
         
-        {/* STATS SECTION (Fades OUT the grid lines by transitioning to solid color) */}
+        {/* STATS SECTION */}
         <div className="w-full bg-gradient-to-b from-[#0b0c13]/0 to-[#0b0c13]">
           <section className="max-w-[1400px] mx-auto flex flex-col justify-center px-8 lg:px-12 py-16">
             <div className="group flex flex-col md:flex-row justify-between items-center gap-16 md:gap-8 w-full">
@@ -119,7 +115,7 @@ function App() {
           </section>
         </div>
 
-        {/* SELECTED WORK SECTION (Solid color, completely hides grid lines) */}
+        {/* SELECTED WORK SECTION */}
         <div className="w-full bg-[#0b0c13]">
           <section id="projects" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12">
             <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-6">
@@ -137,29 +133,33 @@ function App() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Added imgSrc property to your projects */}
               <ProjectCard 
                 title="Nappr" 
                 year="2026"
                 description="Location-based alarm application with real-time geofencing and notifications."
                 active={true}
+                imgSrc="nappr.jpg"
               />
               <ProjectCard 
                 title="QuizCraft" 
                 year="2026"
                 description="AI-powered study platform that provides customized quizzes and flashcard decks."
                 active={true}
+                imgSrc="quizcraft.jpg"
               />
               <ProjectCard 
                 title="IskoMate" 
                 year="2026"
                 description="Real-time student engagement detection system using trained AI models."
                 active={false}
+                imgSrc="iskomate.jpg"
               />
             </div>
           </section>
         </div>
 
-        {/* WHAT I DO SECTION (Fades IN the grid lines by transitioning to transparent) */}
+        {/* WHAT I DO SECTION */}
         <div className="w-full bg-gradient-to-b from-[#0b0c13] to-[#0b0c13]/0">
           <section id="services" className="max-w-[1200px] mx-auto py-16 px-8 lg:px-12">
             <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12">
@@ -187,7 +187,7 @@ function App() {
           </section>
         </div>
 
-        {/* FOOTER & CTA (Transparent background, grid is fully visible again) */}
+        {/* FOOTER & CTA */}
         <footer id="contact" className="w-full pt-16 pb-8 bg-transparent">
           
           <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 pb-20 px-8">
@@ -269,19 +269,32 @@ function StatItem({ number, label }) {
   );
 }
 
-function ProjectCard({ title, year, description, active }) {
+// Updated ProjectCard accepts imgSrc and adds a smooth image zoom on hover
+function ProjectCard({ title, year, description, active, imgSrc }) {
   return (
     <div className="flex flex-col group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl">
       <div className="bg-[#11121a] rounded-xl overflow-hidden border border-gray-800 group-hover:border-neon transition-colors duration-300">
-        <div className="flex gap-2 px-4 py-3 bg-[#0d0e15] border-b border-gray-800">
+        
+        {/* Mock Browser Header */}
+        <div className="flex gap-2 px-4 py-3 bg-[#0d0e15] border-b border-gray-800 z-10 relative">
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
           <div className="w-3 h-3 rounded-full bg-gray-600"></div>
         </div>
         
-        <div className="h-64 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center">
-          <span className="text-gray-700 font-mono text-sm opacity-50">Image Preview</span>
+        {/* Image Container with conditional rendering */}
+        <div className="h-64 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center overflow-hidden relative">
+          {imgSrc ? (
+            <img 
+              src={imgSrc} 
+              alt={`${title} preview`} 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            />
+          ) : (
+            <span className="text-gray-700 font-mono text-sm opacity-50">Image Preview</span>
+          )}
         </div>
+
       </div>
       
       <div className="mt-8 space-y-3 px-4 pb-4">
