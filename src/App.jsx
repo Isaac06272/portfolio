@@ -160,7 +160,7 @@ function App() {
           
           <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 pb-20 px-8">
             <h2 className="text-5xl lg:text-7xl font-bold font-sans flex items-center gap-3">
-              Let's <span className="text-neon">Connect</span>
+              Let's <span className="text-neon">Connect!</span>
             </h2>
             <p className="text-gray-400 font-mono text-lg max-w-2xl leading-relaxed">
               I'm always open to discussing new grad opportunities, exciting projects, or partnership requests. Drop a message and let's build something great together!
