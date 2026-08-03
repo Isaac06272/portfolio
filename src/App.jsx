@@ -195,21 +195,21 @@ function HomeContent({ setActiveTab }) {
                 year="2026"
                 description="Location-based alarm application with real-time geofencing and notifications."
                 active={true}
-                imgSrc="nappr.jpg"
+                imgSrc="nappr.png"
               />
               <ProjectCard 
                 title="QuizCraft" 
                 year="2026"
                 description="AI-powered study platform that provides customized quizzes and flashcard decks."
                 active={true}
-                imgSrc="quizcraft.jpg"
+                imgSrc="quizcraft.png"
               />
               <ProjectCard 
                 title="IskoMate" 
                 year="2026"
                 description="Real-time student engagement detection system using trained AI models."
                 active={true}
-                imgSrc="iskomate.jpg" 
+                imgSrc="iskomate.png" 
               />
             </div>
           </section>
@@ -279,7 +279,7 @@ function ProjectsContent() {
           reverse={false}
           desc="A precision location-based alarm application built for mobile platforms. Nappr utilizes real-time background geofencing to wake users up exactly when they arrive at their destination via public transit, leveraging low-power location APIs and local push notifications."
           tags={['Flutter', 'Dart', 'Geofencing APIs', 'Local Push']}
-          imgSrc="nappr.jpg" 
+          imgSrc="nappr.png" 
         />
 
         <FeaturedProject 
@@ -290,7 +290,7 @@ function ProjectsContent() {
           reverse={true}
           desc="An AI-powered educational platform that automatically generates customized quizzes and flashcard decks from user-provided notes. Features dynamic difficulty scaling and progress tracking. Engineered the entire backend pipeline and built a scalable cross-platform UI for seamless student use."
           tags={['React', 'Node.js', 'LLM APIs', 'MongoDB', 'TailwindCSS']}
-          imgSrc="quizcraft.jpg" 
+          imgSrc="quizcraft.png" 
         />
 
         <FeaturedProject 
@@ -301,7 +301,7 @@ function ProjectsContent() {
           reverse={false} 
           desc="An advanced computer vision system designed to detect and monitor student engagement levels in real-time. It streams webcam data from edge devices (Raspberry Pi) securely via Tailscale to a central laptop server running classification models. The system logs attention metrics directly to a customized database."
           tags={['Python', 'Computer Vision', 'Raspberry Pi', 'Tailscale', 'Flutter']}
-          imgSrc="iskomate.jpg" 
+          imgSrc="iskomate.png" 
         />
 
       </section>
