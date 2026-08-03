@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight, FiPlay, FiCode } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight, FiCode } from 'react-icons/fi';
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -206,6 +206,12 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
                 description="Location-based alarm application with real-time geofencing and notifications."
                 active={true}
                 imgSrc="nappr.png"
+                projectLink="https://github.com/Isaac06272/nappr"
+                showCaseStudy={true}
+                onCaseStudyClick={() => {
+                  setActiveTab('Projects');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
               />
               <ProjectCard 
                 title="QuizCraft" 
@@ -213,13 +219,25 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
                 description="AI-powered study platform that provides customized quizzes and flashcard decks."
                 active={true}
                 imgSrc="quizcraft.png"
+                projectLink="https://github.com/Isaac06272/quizcraft"
+                showCaseStudy={true}
+                onCaseStudyClick={() => {
+                  setActiveTab('Projects');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
               />
               <ProjectCard 
                 title="IskoMate" 
                 year="2026"
                 description="Real-time student engagement detection system using trained AI models."
                 active={true}
-                imgSrc="iskomate.png" 
+                imgSrc="iskomate.png"
+                projectLink="https://github.com/Isaac06272/iskomate"
+                showCaseStudy={true}
+                onCaseStudyClick={() => {
+                  setActiveTab('Projects');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
               />
             </div>
           </section>
@@ -289,7 +307,9 @@ function ProjectsContent() {
           reverse={false}
           desc="A precision location-based alarm application built for mobile platforms. Nappr utilizes real-time background geofencing to wake users up exactly when they arrive at their destination via public transit, leveraging low-power location APIs and local push notifications."
           tags={['Flutter', 'Dart', 'Geofencing APIs', 'Local Push']}
-          imgSrc="nappr.png" 
+          imgSrc="nappr.png"
+          projectLink="https://github.com/Isaac06272/nappr" 
+          sourceLink="https://github.com/Isaac06272/nappr"
         />
 
         <FeaturedProject 
@@ -300,7 +320,9 @@ function ProjectsContent() {
           reverse={true}
           desc="An AI-powered educational platform that automatically generates customized quizzes and flashcard decks from user-provided notes. Features dynamic difficulty scaling and progress tracking. Engineered the entire backend pipeline and built a scalable cross-platform UI for seamless student use."
           tags={['React', 'Node.js', 'LLM APIs', 'MongoDB', 'TailwindCSS']}
-          imgSrc="quizcraft.png" 
+          imgSrc="quizcraft.png"
+          projectLink="https://github.com/Isaac06272/quizcraft" 
+          sourceLink="https://github.com/Isaac06272/quizcraft"
         />
 
         <FeaturedProject 
@@ -311,7 +333,9 @@ function ProjectsContent() {
           reverse={false} 
           desc="An advanced computer vision system designed to detect and monitor student engagement levels in real-time. It streams webcam data from edge devices (Raspberry Pi) securely via Tailscale to a central laptop server running classification models. The system logs attention metrics directly to a customized database."
           tags={['Python', 'Computer Vision', 'Raspberry Pi', 'Tailscale', 'Flutter']}
-          imgSrc="iskomate.png" 
+          imgSrc="iskomate.png"
+          projectLink="https://github.com/Isaac06272/iskomate" 
+          sourceLink="https://github.com/Isaac06272/iskomate"
         />
 
       </section>
@@ -330,6 +354,8 @@ function ProjectsContent() {
             description="Interactive Flutter data visualization components. Features dynamic zoom-in and zoom-out for timeline graphs."
             active={true}
             imgSrc="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+            showCaseStudy={false}
+            projectLink="https://github.com/Isaac06272"
           />
           <ProjectCard 
             title="Hardware Toolkit" 
@@ -337,6 +363,8 @@ function ProjectsContent() {
             description="Arduino and microcontroller interface frameworks for rapid prototyping of sensor-based IoT systems."
             active={false}
             imgSrc="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
+            showCaseStudy={false}
+            projectLink="https://github.com/Isaac06272"
           />
           <ProjectCard 
             title="SecureBank" 
@@ -344,6 +372,8 @@ function ProjectsContent() {
             description="A containerized Next.js banking environment intentionally built with vulnerabilities to test security penetration tools."
             active={false}
             imgSrc="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=800&auto=format&fit=crop"
+            showCaseStudy={false}
+            projectLink="https://github.com/Isaac06272"
           />
         </div>
       </section>
@@ -620,7 +650,6 @@ function InteractiveMesh() {
   );
 }
 
-// ABOUT PAGE CONTACT FORM (WITH FETCH API LOGIC)
 // ABOUT PAGE CONTACT FORM (USING WEB3FORMS)
 function AboutContactForm() {
   const [name, setName] = useState('');
@@ -640,7 +669,7 @@ function AboutContactForm() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          // PASTE YOUR WEB3FORMS ACCESS KEY HERE
+          // TODO: When deploying, log into Web3Forms and change 'localhost' to the live domain!
           access_key: "6b4230fe-c567-49bb-aec8-b35365409ed8",
           name: name,
           email: email,
@@ -783,10 +812,10 @@ function ContactSection({ setActiveTab }) {
   );
 }
 
-function FeaturedProject({ num, year, title, desc, active, tags, imgSrc, reverse }) {
+function FeaturedProject({ num, year, title, desc, active, tags, imgSrc, reverse, projectLink, sourceLink }) {
   return (
     <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}>
-      <div className="w-full lg:w-3/5 group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl relative z-10">
+      <a href={projectLink} target="_blank" rel="noopener noreferrer" className="w-full lg:w-3/5 group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl relative z-10 block">
         <div className="bg-[#11121a] rounded-xl overflow-hidden border border-gray-800 group-hover:border-neon transition-colors duration-300">
           <div className="flex gap-2 px-4 py-3 bg-[#0d0e15] border-b border-gray-800 z-10 relative">
             <div className="w-3 h-3 rounded-full bg-gray-600"></div>
@@ -801,7 +830,7 @@ function FeaturedProject({ num, year, title, desc, active, tags, imgSrc, reverse
             )}
           </div>
         </div>
-      </div>
+      </a>
       <div className="w-full lg:w-2/5 flex flex-col justify-center">
         <div className="flex items-center gap-4 font-mono text-sm mb-6">
           <span className="text-neon">{num}</span>
@@ -824,15 +853,11 @@ function FeaturedProject({ num, year, title, desc, active, tags, imgSrc, reverse
           ))}
         </div>
         <div className="flex items-center gap-8 font-mono text-sm">
-          <a className="flex items-center gap-2 text-neon hover:underline cursor-pointer group">
-            Case study <FiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </a>
-          <a className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors cursor-pointer">
-            <FiPlay /> Live
-          </a>
-          <a className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors cursor-pointer">
-            <FiCode /> Source
-          </a>
+          {sourceLink && (
+            <a href={sourceLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors cursor-pointer">
+              <FiCode /> Source
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -873,36 +898,45 @@ function StatItem({ number, label }) {
   );
 }
 
-function ProjectCard({ title, year, description, active, imgSrc }) {
+function ProjectCard({ title, year, description, active, imgSrc, projectLink, showCaseStudy, onCaseStudyClick }) {
   return (
-    <div className="flex flex-col h-full group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl">
-      <div className="bg-[#11121a]/80 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/80 group-hover:border-neon transition-colors duration-300">
-        <div className="flex gap-2 px-4 py-3 bg-[#0d0e15] border-b border-gray-800 z-10 relative">
-          <div className="w-3 h-3 rounded-full bg-gray-600"></div>
-          <div className="w-3 h-3 rounded-full bg-gray-600"></div>
-          <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+    <div className="flex flex-col h-full group transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl relative">
+      <a href={projectLink} target="_blank" rel="noopener noreferrer" className="block flex-grow cursor-pointer outline-none">
+        <div className="bg-[#11121a]/80 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/80 group-hover:border-neon transition-colors duration-300">
+          <div className="flex gap-2 px-4 py-3 bg-[#0d0e15] border-b border-gray-800 z-10 relative">
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+          </div>
+          <div className="h-64 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center overflow-hidden relative">
+            {imgSrc ? (
+              <img src={imgSrc} alt={`${title} preview`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
+            ) : (
+              <span className="text-gray-700 font-mono text-sm opacity-50">Image Preview</span>
+            )}
+          </div>
         </div>
-        <div className="h-64 w-full bg-gradient-to-br from-[#1a1c29] to-[#0d0e15] flex items-center justify-center overflow-hidden relative">
-          {imgSrc ? (
-            <img src={imgSrc} alt={`${title} preview`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
-          ) : (
-            <span className="text-gray-700 font-mono text-sm opacity-50">Image Preview</span>
-          )}
+        
+        <div className="mt-8 space-y-3 px-4 flex flex-col flex-grow">
+          <div className="flex justify-between items-center font-sans">
+            <h3 className="text-xl font-bold group-hover:text-neon transition-colors">{title}</h3>
+            <span className="font-mono text-gray-500 text-sm">{year}</span>
+          </div>
+          <p className="text-gray-400 font-sans text-base leading-relaxed flex-grow">{description}</p>
         </div>
-      </div>
+      </a>
       
-      <div className="mt-8 space-y-3 px-4 pb-4 flex flex-col flex-grow">
-        <div className="flex justify-between items-center font-sans">
-          <h3 className="text-xl font-bold group-hover:text-neon transition-colors">{title}</h3>
-          <span className="font-mono text-gray-500 text-sm">{year}</span>
-        </div>
-        <p className="text-gray-400 font-sans text-base leading-relaxed flex-grow">{description}</p>
-        <div className="pt-4 mt-auto">
-           <a className="flex w-fit items-center gap-2 text-neon text-sm font-mono hover:underline group-hover:translate-x-2 transition-transform cursor-pointer">
+      {showCaseStudy && (
+        <div className="px-4 pb-4 mt-auto pt-4 relative z-10">
+           <button 
+             onClick={onCaseStudyClick}
+             className="flex w-fit items-center gap-2 text-neon text-sm font-mono hover:underline group-hover:translate-x-2 transition-transform cursor-pointer"
+           >
             Case study <FiArrowUpRight />
-          </a>
+          </button>
         </div>
-      </div>
+      )}
+      {!showCaseStudy && <div className="pb-6"></div>}
     </div>
   );
 }
