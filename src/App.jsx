@@ -219,7 +219,7 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
                 description="AI-powered study platform that provides customized quizzes and flashcard decks."
                 active={true}
                 imgSrc="quizcraft.png"
-                projectLink="https://github.com/Isaac06272/quizcraft"
+                projectLink="https://quizcraft-one.vercel.app/"
                 showCaseStudy={true}
                 onCaseStudyClick={() => {
                   setActiveTab('Projects');
@@ -230,9 +230,9 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
                 title="IskoMate" 
                 year="2026"
                 description="Real-time student engagement detection system using trained AI models."
-                active={true}
+                active={false}
                 imgSrc="iskomate.png"
-                projectLink="https://github.com/Isaac06272/iskomate"
+                projectLink="https://iskomate-website-57w8w7e0p-isaac06272s-projects.vercel.app/"
                 showCaseStudy={true}
                 onCaseStudyClick={() => {
                   setActiveTab('Projects');
@@ -321,7 +321,7 @@ function ProjectsContent() {
           desc="An AI-powered educational platform that automatically generates customized quizzes and flashcard decks from user-provided notes. Features dynamic difficulty scaling and progress tracking. Engineered the entire backend pipeline and built a scalable cross-platform UI for seamless student use."
           tags={['React', 'Node.js', 'LLM APIs', 'MongoDB', 'TailwindCSS']}
           imgSrc="quizcraft.png"
-          projectLink="https://github.com/Isaac06272/quizcraft" 
+          projectLink="https://quizcraft-one.vercel.app/" 
           sourceLink="https://github.com/Isaac06272/quizcraft"
         />
 
@@ -329,13 +329,13 @@ function ProjectsContent() {
           num="03"
           year="2026"
           title="IskoMate System"
-          active={true}
+          active={false}
           reverse={false} 
           desc="An advanced computer vision system designed to detect and monitor student engagement levels in real-time. It streams webcam data from edge devices (Raspberry Pi) securely via Tailscale to a central laptop server running classification models. The system logs attention metrics directly to a customized database."
           tags={['Python', 'Computer Vision', 'Raspberry Pi', 'Tailscale', 'Flutter']}
           imgSrc="iskomate.png"
-          projectLink="https://github.com/Isaac06272/iskomate" 
-          sourceLink="https://github.com/Isaac06272/iskomate"
+          projectLink="https://iskomate-website-57w8w7e0p-isaac06272s-projects.vercel.app/" 
+          sourceLink="https://github.com/Isaac06272/iskomate-app"
         />
 
       </section>
@@ -349,31 +349,22 @@ function ProjectsContent() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <ProjectCard 
-            title="Timeline UI" 
+            title="RiceGuard" 
             year="2026"
-            description="Interactive Flutter data visualization components. Features dynamic zoom-in and zoom-out for timeline graphs."
+            description="Web application for monitoring rice crops diseases to prevent yield loss using computer vision techniques."
             active={true}
-            imgSrc="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+            imgSrc="riceguard.png"
             showCaseStudy={false}
-            projectLink="https://github.com/Isaac06272"
+            projectLink="https://riceguard-hkhnr3tgp2lh8pwq2xr9pd.streamlit.app/"
           />
           <ProjectCard 
-            title="Hardware Toolkit" 
-            year="2025"
-            description="Arduino and microcontroller interface frameworks for rapid prototyping of sensor-based IoT systems."
+            title="Clipforge" 
+            year="2026"
+            description="Automatic video editing tool powered by AI."
             active={false}
-            imgSrc="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
+            imgSrc="clipforge.png"
             showCaseStudy={false}
-            projectLink="https://github.com/Isaac06272"
-          />
-          <ProjectCard 
-            title="SecureBank" 
-            year="2025"
-            description="A containerized Next.js banking environment intentionally built with vulnerabilities to test security penetration tools."
-            active={false}
-            imgSrc="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=800&auto=format&fit=crop"
-            showCaseStudy={false}
-            projectLink="https://github.com/Isaac06272"
+            projectLink="https://github.com/Isaac06272/clipforge"
           />
         </div>
       </section>
@@ -839,7 +830,7 @@ function FeaturedProject({ num, year, title, desc, active, tags, imgSrc, reverse
           <div className="flex items-center gap-2">
             <div className={`w-2 h-2 rounded-full ${active ? 'bg-neon' : 'bg-gray-600'}`}></div>
             <span className={active ? 'text-neon' : 'text-gray-500'}>
-              {active ? 'Actively maintained' : 'Archived'}
+              {active ? 'Actively maintained' : 'No longer maintained'}
             </span>
           </div>
         </div>
