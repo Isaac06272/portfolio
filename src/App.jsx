@@ -20,6 +20,11 @@ function App() {
 
   const navItems = ['Home', 'Projects', 'Certifications', 'About'];
 
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('johngwenisaacaustria@gmail.com');
+    alert('Email copied to clipboard!');
+  };
+
   return (
     <div className="w-full text-white bg-[#0b0c13] min-h-screen flex flex-col relative selection:bg-neon selection:text-black">
       
@@ -63,7 +68,7 @@ function App() {
 
       {/* PAGE ROUTING (Conditional Rendering) */}
       <div className="flex-grow relative z-10">
-        {activeTab === 'Home' && <HomeContent setActiveTab={setActiveTab} />}
+        {activeTab === 'Home' && <HomeContent setActiveTab={setActiveTab} handleCopyEmail={handleCopyEmail} />}
         {activeTab === 'Projects' && <ProjectsContent />}
         {activeTab === 'Certifications' && <CertificationsContent />}
         {activeTab === 'About' && <AboutContent />}
@@ -75,10 +80,10 @@ function App() {
           John Gwen Isaac Austria
         </div>
         <div className="flex gap-4">
-          <SocialIcon href="mailto:your.email@example.com"><FiMail size={20} /></SocialIcon>
-          <SocialIcon href="https://github.com"><FiGithub size={20} /></SocialIcon>
-          <SocialIcon href="https://linkedin.com"><FiLinkedin size={20} /></SocialIcon>
-          <SocialIcon href="https://instagram.com"><FiInstagram size={20} /></SocialIcon>
+          <SocialIcon onClick={handleCopyEmail}><FiMail size={20} /></SocialIcon>
+          <SocialIcon href="https://github.com/Isaac06272"><FiGithub size={20} /></SocialIcon>
+          <SocialIcon href="https://www.linkedin.com/in/johngwenisaacaustria/"><FiLinkedin size={20} /></SocialIcon>
+          <SocialIcon href="https://www.instagram.com/_jmbzc"><FiInstagram size={20} /></SocialIcon>
         </div>
       </footer>
 
@@ -115,7 +120,7 @@ function App() {
    ========================================= */
 
 // 1. HOME PAGE
-function HomeContent({ setActiveTab }) {
+function HomeContent({ setActiveTab, handleCopyEmail }) {
   return (
     <>
       <main className="min-h-[85vh] flex flex-col-reverse lg:flex-row items-center justify-between px-8 lg:px-16 max-w-[1700px] mx-auto w-full py-12 gap-16">
@@ -137,15 +142,20 @@ function HomeContent({ setActiveTab }) {
             <p>CpE | Philippines</p>
           </div>
           <div className="flex flex-wrap items-center gap-6 pt-6">
-            <button className="group flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono">
+            <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono cursor-pointer"
+            >
               <span className="text-base font-semibold tracking-wider">VIEW CV</span>
               <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
-            </button>
+            </a>
             <div className="flex gap-4">
-              <SocialIcon href="mailto:your.email@example.com"><FiMail size={22} /></SocialIcon>
-              <SocialIcon href="https://github.com"><FiGithub size={22} /></SocialIcon>
-              <SocialIcon href="https://linkedin.com"><FiLinkedin size={22} /></SocialIcon>
-              <SocialIcon href="https://instagram.com"><FiInstagram size={22} /></SocialIcon>
+              <SocialIcon onClick={handleCopyEmail}><FiMail size={22} /></SocialIcon>
+              <SocialIcon href="https://github.com/Isaac06272"><FiGithub size={22} /></SocialIcon>
+              <SocialIcon href="https://www.linkedin.com/in/johngwenisaacaustria/"><FiLinkedin size={22} /></SocialIcon>
+              <SocialIcon href="https://www.instagram.com/_jmbzc"><FiInstagram size={22} /></SocialIcon>
             </div>
           </div>
         </div>
@@ -244,7 +254,7 @@ function HomeContent({ setActiveTab }) {
         
         {/* CONTACT SECTION ON HOME PAGE */}
         <div className="w-full bg-transparent pt-16">
-          <ContactSection />
+          <ContactSection setActiveTab={setActiveTab} />
         </div>
       </div>
     </>
@@ -413,9 +423,13 @@ function AboutContent() {
               Whether I'm developing real-time computer vision models, managing routing protocols over Tailscale, or building scalable cross-platform applications in Flutter, I love bridging the gap between low-level architecture and intuitive software.
             </p>
             <div className="pt-4">
-              <button className="flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono w-fit">
+              <a 
+                href="/resume.pdf" 
+                download="John_Gwen_Isaac_Austria_CV.pdf"
+                className="flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono w-fit cursor-pointer"
+              >
                 <span className="text-sm font-semibold tracking-wider uppercase">Download CV</span>
-              </button>
+              </a>
             </div>
           </div>
           
@@ -473,11 +487,9 @@ function AboutContent() {
    HELPER COMPONENTS
    ========================================= */
 
-// NEW INTERACTIVE MESH COMPONENT (Replaces the spinning ring on Home)
+// INTERACTIVE MESH COMPONENT
 function InteractiveMesh() {
   const canvasRef = useRef(null);
-  
-  // Radius set to 60 for a tighter hover effect
   const mouseRef = useRef({ x: -1000, y: -1000, radius: 60 });
 
   useEffect(() => {
@@ -500,9 +512,7 @@ function InteractiveMesh() {
       const centerY = canvas.height / 2;
 
       for (let i = 0; i < numParticles; i++) {
-        // Generate an organic, messy cluster (not a perfect circle)
         const angle = Math.random() * Math.PI * 2;
-        // Distortion makes it look like an abstract 3D blob
         const distortion = Math.sin(angle * 4) * 40 + Math.cos(angle * 3) * 30;
         const radius = (Math.random() * 120) + distortion;
         
@@ -514,7 +524,7 @@ function InteractiveMesh() {
           y: y,
           baseX: x,
           baseY: y,
-          size: Math.random() * 3 + 1, // Varying sizes for depth
+          size: Math.random() * 4 + 2.5, 
           driftAngle: Math.random() * Math.PI * 2,
           driftSpeed: Math.random() * 0.02
         });
@@ -542,14 +552,11 @@ function InteractiveMesh() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const mouse = mouseRef.current;
 
-      // Update and Draw particles
       particles.forEach(p => {
-        // Subtle idle drifting
         p.driftAngle += p.driftSpeed;
         const idleX = p.baseX + Math.cos(p.driftAngle) * 5;
         const idleY = p.baseY + Math.sin(p.driftAngle) * 5;
 
-        // Interaction physics
         let dx = mouse.x - p.x;
         let dy = mouse.y - p.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
@@ -565,28 +572,25 @@ function InteractiveMesh() {
           p.x -= directionX;
           p.y -= directionY;
         } else {
-          // Spring back to idle position
           p.x -= (p.x - idleX) * 0.08;
           p.y -= (p.y - idleY) * 0.08;
         }
 
-        // Draw node
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = '#00e5ff'; // Neon cyan color
+        ctx.fillStyle = '#00e5ff'; 
         ctx.fill();
       });
 
-      // Draw connecting mesh lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i; j < particles.length; j++) {
           let dx = particles[i].x - particles[j].x;
           let dy = particles[i].y - particles[j].y;
           let distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 35) { // Connection threshold
+          if (distance < 35) { 
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 229, 255, ${1 - distance/35})`; // Fades out over distance
+            ctx.strokeStyle = `rgba(0, 229, 255, ${1 - distance/35})`; 
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -610,16 +614,31 @@ function InteractiveMesh() {
 
   return (
     <div className="relative w-full h-[400px] lg:h-[500px] flex justify-center items-center group cursor-crosshair">
-      {/* Subtle backdrop glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-neon/10 blur-[100px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-neon/30"></div>
       <canvas ref={canvasRef} className="w-full h-full relative z-10" />
     </div>
   );
 }
 
+// ABOUT PAGE CONTACT FORM (WITH MAILTO LOGIC)
 function AboutContactForm() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Build mailto link using user inputs
+    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    const mailtoLink = `mailto:johngwenisaacaustria@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Trigger opening the default email client
+    window.location.href = mailtoLink;
+  };
+
   return (
-    <div className="max-w-[800px] mx-auto w-full px-8 pb-32 pt-16">
+    <div id="contact-form" className="max-w-[800px] mx-auto w-full px-8 pb-32 pt-16">
       
       <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12 justify-center">
         <span className="w-12 h-[1px] bg-gray-700"></span>
@@ -627,13 +646,16 @@ function AboutContactForm() {
         <span className="w-12 h-[1px] bg-gray-700"></span>
       </div>
       
-      <form className="flex flex-col gap-8" onSubmit={(e) => e.preventDefault()}>
+      <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
         
         <div className="flex flex-col md:flex-row gap-8">
           <div className="flex flex-col gap-3 flex-1 group">
             <label className="text-gray-400 font-mono text-sm uppercase tracking-wider group-focus-within:text-neon transition-colors">Name</label>
             <input 
               type="text" 
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Your secret identity"
               className="bg-[#11121a]/80 backdrop-blur-sm border border-gray-800/80 rounded-xl px-5 py-4 text-base text-white focus:outline-none focus:border-neon transition-colors placeholder-gray-600 w-full font-sans"
             />
@@ -642,6 +664,9 @@ function AboutContactForm() {
             <label className="text-gray-400 font-mono text-sm uppercase tracking-wider group-focus-within:text-neon transition-colors">Email Address</label>
             <input 
               type="email" 
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="I won't spam you, I promise"
               className="bg-[#11121a]/80 backdrop-blur-sm border border-gray-800/80 rounded-xl px-5 py-4 text-base text-white focus:outline-none focus:border-neon transition-colors placeholder-gray-600 w-full font-sans"
             />
@@ -651,6 +676,9 @@ function AboutContactForm() {
         <div className="flex flex-col gap-3 group">
           <label className="text-gray-400 font-mono text-sm uppercase tracking-wider group-focus-within:text-neon transition-colors">Content</label>
           <textarea 
+            required
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Your message goes here"
             rows="6"
             className="bg-[#11121a]/80 backdrop-blur-sm border border-gray-800/80 rounded-xl px-5 py-4 text-base text-white focus:outline-none focus:border-neon transition-colors placeholder-gray-600 w-full resize-y font-sans"
@@ -686,7 +714,8 @@ function SkillCategory({ title, skills }) {
   );
 }
 
-function ContactSection() {
+// HOMEPAGE CONTACT SECTION (REDIRECTS TO ABOUT FORM)
+function ContactSection({ setActiveTab }) {
   return (
     <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 px-8 pb-12 pt-16">
       <h2 className="text-5xl lg:text-7xl font-bold font-sans flex items-center gap-3">
@@ -695,7 +724,15 @@ function ContactSection() {
       <p className="text-gray-400 font-mono text-lg max-w-2xl leading-relaxed">
         I'm always open to discussing new grad opportunities, exciting projects, or partnership requests. Drop a message and let's build something great together!
       </p>
-      <button className="px-10 py-4 border-2 border-neon rounded-full font-mono text-neon hover:bg-neon hover:text-black transition-all duration-300 mt-8 text-lg font-bold tracking-wide">
+      <button 
+        onClick={() => {
+          setActiveTab('About');
+          setTimeout(() => {
+            document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }}
+        className="px-10 py-4 border-2 border-neon rounded-full font-mono text-neon hover:bg-neon hover:text-black transition-all duration-300 mt-8 text-lg font-bold tracking-wide"
+      >
         Send an email
       </button>
     </div>
@@ -758,7 +795,19 @@ function FeaturedProject({ num, year, title, desc, active, tags, imgSrc, reverse
   );
 }
 
-function SocialIcon({ href, children }) {
+// ALLOWS ONCLICK OR HREF BASED ON PROP
+function SocialIcon({ href, onClick, children }) {
+  if (onClick) {
+    return (
+      <button 
+        onClick={onClick} 
+        className="p-2.5 rounded-full border-2 border-neon text-neon hover:text-black hover:bg-neon transition-colors duration-150 flex items-center justify-center bg-[#0b0c13]"
+      >
+        {children}
+      </button>
+    );
+  }
+  
   return (
     <a 
       href={href} 
