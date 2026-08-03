@@ -407,10 +407,10 @@ function AboutContent() {
               Engineering <br /> <span className="text-neon">at the edge.</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              I'm an academic student in Computer Engineering with a strong focus on hands-on software development, network protocols, and hardware experimentation.
+              I'm an academic student in Computer Engineering with a strong focus on hands-on software development, network protocols, and data experimentation.
             </p>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              Whether I'm developing real-time computer vision models for edge devices like the Raspberry Pi, routing protocols over Tailscale, or building scalable cross-platform applications in Flutter, I love bridging the gap between physical hardware and intuitive software.
+              Whether I'm developing real-time computer vision models, managing routing protocols over Tailscale, or building scalable cross-platform applications in Flutter, I love bridging the gap between low-level architecture and intuitive software.
             </p>
             <div className="pt-4">
               <button className="flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono w-fit">
@@ -434,7 +434,7 @@ function AboutContent() {
 
         </div>
         
-        {/* BOTTOM ROW: Skills Grid (3 Columns) */}
+        {/* BOTTOM ROW: Skills Grid mapped from CV */}
         <div className="mb-24">
           <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12 justify-center">
             <span className="w-12 h-[1px] bg-gray-700"></span>
@@ -442,18 +442,22 @@ function AboutContent() {
             <span className="w-12 h-[1px] bg-gray-700"></span>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <SkillCategory 
-              title="Languages" 
-              skills={['Python', 'Dart', 'JavaScript', 'TypeScript', 'C++']} 
+              title="Languages & Web" 
+              skills={['Python', 'JavaScript', 'React', 'Tailwind CSS', 'Flutter', 'HTML/CSS']} 
             />
             <SkillCategory 
-              title="Frameworks & Libraries" 
-              skills={['Flutter', 'React', 'Node.js', 'TensorFlow', 'OpenCV']} 
+              title="Data & Backend" 
+              skills={['Node.js', 'Flask', 'Firebase', 'SQLite', 'SQLCipher']} 
             />
             <SkillCategory 
-              title="Tools & Hardware" 
-              skills={['Raspberry Pi', 'Arduino', 'Tailscale', 'AWS Cloud', 'MongoDB']} 
+              title="Vision & ML" 
+              skills={['OpenCV', 'MediaPipe', 'YOLOv8', 'TFLite', 'Scikit-learn']} 
+            />
+            <SkillCategory 
+              title="Tools & Platforms" 
+              skills={['Git/GitHub', 'Vercel', 'Render', 'Streamlit', 'Figma']} 
             />
           </div>
         </div>
@@ -473,7 +477,7 @@ function AboutContent() {
 function InteractiveMesh() {
   const canvasRef = useRef(null);
   
-  // Radius reduced to 60 as discussed for a tighter hover effect
+  // Radius set to 60 for a tighter hover effect
   const mouseRef = useRef({ x: -1000, y: -1000, radius: 60 });
 
   useEffect(() => {
@@ -667,7 +671,7 @@ function AboutContactForm() {
 
 function SkillCategory({ title, skills }) {
   return (
-    <div className="bg-[#11121a]/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800/80 hover:border-neon transition-colors duration-300">
+    <div className="bg-[#11121a]/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800/80 hover:border-neon transition-colors duration-300 h-full">
       <h3 className="text-xl font-bold font-sans mb-4 text-white flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-neon"></span> {title}
       </h3>
