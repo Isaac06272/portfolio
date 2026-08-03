@@ -620,21 +620,43 @@ function InteractiveMesh() {
   );
 }
 
-// ABOUT PAGE CONTACT FORM (WITH MAILTO LOGIC)
+// ABOUT PAGE CONTACT FORM (WITH FETCH API LOGIC)
 function AboutContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('idle'); // 'idle', 'loading', 'success', 'error'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Build mailto link using user inputs
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    const mailtoLink = `mailto:johngwenisaacaustria@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Trigger opening the default email client
-    window.location.href = mailtoLink;
+    setStatus('loading');
+
+    try {
+      // REPLACE THIS URL WITH YOUR ACTUAL RENDER BACKEND URL
+      const response = await fetch('https://portfolio-750l.onrender.com/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setName('');
+        setEmail('');
+        setMessage('');
+        
+        // Reset success message after 3 seconds
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -687,9 +709,19 @@ function AboutContactForm() {
 
         <button 
           type="submit"
-          className="mt-4 w-full px-10 py-5 border-2 border-neon rounded-xl font-mono text-neon hover:bg-neon hover:text-black transition-all duration-300 text-lg font-bold tracking-wide flex justify-center items-center gap-3 group"
+          disabled={status === 'loading' || status === 'success'}
+          className={`mt-4 w-full px-10 py-5 border-2 rounded-xl font-mono transition-all duration-300 text-lg font-bold tracking-wide flex justify-center items-center gap-3 group
+            ${status === 'success' ? 'border-green-500 text-green-500 bg-green-500/10' : 
+              status === 'error' ? 'border-red-500 text-red-500 hover:bg-red-500/10' : 
+              'border-neon text-neon hover:bg-neon hover:text-black'}
+            ${status === 'loading' ? 'opacity-70 cursor-wait' : ''}`}
         >
-          Send Email <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+          {status === 'loading' && 'Sending...'}
+          {status === 'success' && 'Message Sent! ✓'}
+          {status === 'error' && 'Failed. Try Again.'}
+          {status === 'idle' && (
+            <>Send Email <span className="group-hover:translate-x-2 transition-transform duration-300">→</span></>
+          )}
         </button>
 
       </form>

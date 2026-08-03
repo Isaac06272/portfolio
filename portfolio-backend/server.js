@@ -1,21 +1,25 @@
 // server.js
 require('dotenv').config();
+// ADD THIS LINE TO FORCE IPv4:
+require('dns').setDefaultResultOrder('ipv4first'); 
+
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 
 const app = express();
 
-// Allow your frontend to talk to this backend
 app.use(cors({ origin: '*' })); 
 app.use(express.json());
 
-// Configure Nodemailer with your email credentials
+// Update the transport to explicitly use the smtp host and port
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
-    user: process.env.EMAIL_USER, // Your Gmail address
-    pass: process.env.EMAIL_PASS, // Your Gmail App Password (NOT your regular password)
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
@@ -25,7 +29,7 @@ app.post('/send', async (req, res) => {
   try {
     const mailOptions = {
       from: email,
-      to: process.env.EMAIL_USER, // Send it to yourself
+      to: process.env.EMAIL_USER,
       subject: `Portfolio Contact from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     };
