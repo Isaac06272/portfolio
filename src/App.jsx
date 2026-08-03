@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight, FiCode } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight, FiPlay, FiCode } from 'react-icons/fi';
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -315,7 +315,7 @@ function ProjectsContent() {
         <FeaturedProject 
           num="02"
           year="2026"
-          title="QuizCraft Platform"
+          title="QuizCraft"
           active={true}
           reverse={true}
           desc="An AI-powered educational platform that automatically generates customized quizzes and flashcard decks from user-provided notes. Features dynamic difficulty scaling and progress tracking. Engineered the entire backend pipeline and built a scalable cross-platform UI for seamless student use."
@@ -328,7 +328,7 @@ function ProjectsContent() {
         <FeaturedProject 
           num="03"
           year="2026"
-          title="IskoMate System"
+          title="IskoMate"
           active={false}
           reverse={false} 
           desc="An advanced computer vision system designed to detect and monitor student engagement levels in real-time. It streams webcam data from edge devices (Raspberry Pi) securely via Tailscale to a central laptop server running classification models. The system logs attention metrics directly to a customized database."
@@ -351,20 +351,24 @@ function ProjectsContent() {
           <ProjectCard 
             title="RiceGuard" 
             year="2026"
-            description="Web application for monitoring rice crops diseases to prevent yield loss using computer vision techniques."
+            description="An intelligent web application leveraging computer vision to monitor crop health. It analyzes field images to detect early signs of agricultural diseases, preventing yield loss and optimizing yields."
             active={true}
             imgSrc="riceguard.png"
             showCaseStudy={false}
             projectLink="https://riceguard-hkhnr3tgp2lh8pwq2xr9pd.streamlit.app/"
+            tags={['Python', 'Streamlit', 'Computer Vision']}
+            sourceLink="https://github.com/Isaac06272/riceguard"
           />
           <ProjectCard 
             title="Clipforge" 
             year="2026"
-            description="Automatic video editing tool powered by AI."
+            description="An AI-powered video automation tool that streamlines the editing pipeline. It analyzes raw footage to programmatically extract highlights and generate polished social media clips."
             active={false}
             imgSrc="clipforge.png"
             showCaseStudy={false}
             projectLink="https://github.com/Isaac06272/clipforge"
+            tags={['Python', 'AI Models', 'Automation']}
+            sourceLink="https://github.com/Isaac06272/clipforge"
           />
         </div>
       </section>
@@ -462,7 +466,7 @@ function AboutContent() {
                 <circle cx="50" cy="50" r="46" fill="none" stroke="var(--color-neon)" strokeWidth="0.3" strokeDasharray="2 15" className="opacity-40" />
               </svg>
               <div className="w-[87%] h-[87%] rounded-full overflow-hidden bg-[#9785c4] flex items-center justify-center p-2 relative z-10 transition-transform duration-500 group-hover:scale-105">
-                <img src="https://via.placeholder.com/800x800" alt="Profile" className="w-full h-full object-cover rounded-full" />
+                <img src="profile.png" alt="John Gwen Isaac Austria" className="w-full h-full object-cover rounded-full" />
               </div>
             </div>
           </div>
@@ -889,11 +893,11 @@ function StatItem({ number, label }) {
   );
 }
 
-function ProjectCard({ title, year, description, active, imgSrc, projectLink, showCaseStudy, onCaseStudyClick }) {
+function ProjectCard({ title, year, description, active, imgSrc, projectLink, showCaseStudy, onCaseStudyClick, tags, sourceLink }) {
   return (
-    <div className="flex flex-col h-full group transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl relative">
-      <a href={projectLink} target="_blank" rel="noopener noreferrer" className="block flex-grow cursor-pointer outline-none">
-        <div className="bg-[#11121a]/80 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/80 group-hover:border-neon transition-colors duration-300">
+    <div className="flex flex-col h-full group transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,229,255,0.3)] rounded-xl relative bg-[#11121a]/30 border border-transparent hover:border-neon/50">
+      <a href={projectLink} target="_blank" rel="noopener noreferrer" className="block flex-grow cursor-pointer outline-none flex flex-col">
+        <div className="bg-[#11121a]/80 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/80 transition-colors duration-300">
           <div className="flex gap-2 px-4 py-3 bg-[#0d0e15] border-b border-gray-800 z-10 relative">
             <div className="w-3 h-3 rounded-full bg-gray-600"></div>
             <div className="w-3 h-3 rounded-full bg-gray-600"></div>
@@ -908,26 +912,53 @@ function ProjectCard({ title, year, description, active, imgSrc, projectLink, sh
           </div>
         </div>
         
-        <div className="mt-8 space-y-3 px-4 flex flex-col flex-grow">
+        <div className="mt-6 space-y-3 px-4 flex flex-col flex-grow">
+          {tags && (
+            <div className="flex items-center gap-2 mb-1">
+              <div className={`w-2 h-2 rounded-full ${active ? 'bg-neon' : 'bg-gray-600'}`}></div>
+              <span className={`font-mono text-xs ${active ? 'text-neon' : 'text-gray-500'}`}>
+                {active ? 'Actively maintained' : 'No longer maintained'}
+              </span>
+            </div>
+          )}
+          
           <div className="flex justify-between items-center font-sans">
             <h3 className="text-xl font-bold group-hover:text-neon transition-colors">{title}</h3>
             <span className="font-mono text-gray-500 text-sm">{year}</span>
           </div>
+          
           <p className="text-gray-400 font-sans text-base leading-relaxed flex-grow">{description}</p>
+          
+          {tags && (
+            <div className="flex flex-wrap gap-2 pt-2">
+              {tags.map((tag) => (
+                <span key={tag} className="px-3 py-1 border border-gray-700/80 rounded-full text-xs font-mono text-gray-400 cursor-default">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </a>
       
-      {showCaseStudy && (
-        <div className="px-4 pb-4 mt-auto pt-4 relative z-10">
+      <div className="px-4 pb-5 mt-auto pt-6 flex flex-wrap items-center gap-6 relative z-20">
+        {showCaseStudy && (
            <button 
              onClick={onCaseStudyClick}
              className="flex w-fit items-center gap-2 text-neon text-sm font-mono hover:underline group-hover:translate-x-2 transition-transform cursor-pointer"
            >
             Case study <FiArrowUpRight />
           </button>
-        </div>
-      )}
-      {!showCaseStudy && <div className="pb-6"></div>}
+        )}
+        
+        {sourceLink && (
+          <a href={sourceLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 text-sm font-mono hover:text-white transition-colors cursor-pointer group/source">
+            <FiCode /> <span className="group-hover/source:underline">Source</span>
+          </a>
+        )}
+      </div>
+      
+      {(!showCaseStudy && !sourceLink) && <div className="pb-6"></div>}
     </div>
   );
 }
