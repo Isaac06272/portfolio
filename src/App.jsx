@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight, FiPlay, FiCode } from 'react-icons/fi';
 
 function App() {
@@ -150,16 +150,9 @@ function HomeContent({ setActiveTab }) {
           </div>
         </div>
 
+        {/* CURSOR-REACTIVE ANIMATION */}
         <div className="flex-1 flex justify-center items-center w-full">
-          <div className="relative group w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] flex justify-center items-center cursor-pointer">
-            <svg className="absolute inset-0 w-full h-full animate-[spin_25s_linear_infinite] transition-all duration-500 group-hover:scale-[1.15] group-hover:drop-shadow-[0_0_20px_rgba(0,229,255,0.5)]" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="48.5" fill="none" stroke="var(--color-neon)" strokeWidth="0.8" strokeDasharray="30 4 5 4 15 10 40 8 12 5" />
-              <circle cx="50" cy="50" r="46" fill="none" stroke="var(--color-neon)" strokeWidth="0.3" strokeDasharray="2 15" className="opacity-40" />
-            </svg>
-            <div className="w-[87%] h-[87%] rounded-full overflow-hidden bg-[#9785c4] flex items-center justify-center p-2 relative z-10 transition-transform duration-500 group-hover:scale-105">
-              <img src="https://via.placeholder.com/800x800" alt="Profile" className="w-full h-full object-cover rounded-full" />
-            </div>
-          </div>
+          <InteractiveMesh />
         </div>
       </main>
 
@@ -400,14 +393,16 @@ function AboutContent() {
   return (
     <div className="w-full min-h-screen pb-16 relative z-10">
       <section className="max-w-[1200px] mx-auto pt-24 px-8 lg:px-12">
-        <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-8">
+        <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-16">
           <span className="w-12 h-[1px] bg-gray-700"></span>
           About Me
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
-          {/* Bio Text */}
-          <div className="flex flex-col justify-center">
+        {/* TOP ROW: Bio + Profile Ring */}
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-16 mb-24">
+          
+          {/* Bio Text (Left) */}
+          <div className="flex-1 flex flex-col justify-center">
             <h1 className="text-5xl lg:text-7xl font-bold font-sans mb-8 leading-tight">
               Engineering <br /> <span className="text-neon">at the edge.</span>
             </h1>
@@ -424,8 +419,30 @@ function AboutContent() {
             </div>
           </div>
           
-          {/* Skills Grid */}
-          <div className="flex flex-col justify-center gap-8 lg:pl-10">
+          {/* PROFILE RING (Right) */}
+          <div className="flex-1 flex justify-center items-center w-full">
+            <div className="relative group w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] flex justify-center items-center cursor-pointer">
+              <svg className="absolute inset-0 w-full h-full animate-[spin_25s_linear_infinite] transition-all duration-500 group-hover:scale-[1.15] group-hover:drop-shadow-[0_0_20px_rgba(0,229,255,0.5)]" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="48.5" fill="none" stroke="var(--color-neon)" strokeWidth="0.8" strokeDasharray="30 4 5 4 15 10 40 8 12 5" />
+                <circle cx="50" cy="50" r="46" fill="none" stroke="var(--color-neon)" strokeWidth="0.3" strokeDasharray="2 15" className="opacity-40" />
+              </svg>
+              <div className="w-[87%] h-[87%] rounded-full overflow-hidden bg-[#9785c4] flex items-center justify-center p-2 relative z-10 transition-transform duration-500 group-hover:scale-105">
+                <img src="https://via.placeholder.com/800x800" alt="Profile" className="w-full h-full object-cover rounded-full" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        {/* BOTTOM ROW: Skills Grid (3 Columns) */}
+        <div className="mb-24">
+          <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12 justify-center">
+            <span className="w-12 h-[1px] bg-gray-700"></span>
+            Tech Stack
+            <span className="w-12 h-[1px] bg-gray-700"></span>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <SkillCategory 
               title="Languages" 
               skills={['Python', 'Dart', 'JavaScript', 'TypeScript', 'C++']} 
@@ -452,7 +469,150 @@ function AboutContent() {
    HELPER COMPONENTS
    ========================================= */
 
-// UPDATED COMPONENT: Matches site aesthetic
+// NEW INTERACTIVE MESH COMPONENT (Replaces the spinning ring on Home)
+function InteractiveMesh() {
+  const canvasRef = useRef(null);
+  
+  // Radius reduced to 60 as discussed for a tighter hover effect
+  const mouseRef = useRef({ x: -1000, y: -1000, radius: 60 });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+    let particles = [];
+
+    const setSize = () => {
+      const parent = canvas.parentElement;
+      canvas.width = parent.clientWidth;
+      canvas.height = parent.clientHeight;
+      initParticles();
+    };
+
+    const initParticles = () => {
+      particles = [];
+      const numParticles = 180;
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      for (let i = 0; i < numParticles; i++) {
+        // Generate an organic, messy cluster (not a perfect circle)
+        const angle = Math.random() * Math.PI * 2;
+        // Distortion makes it look like an abstract 3D blob
+        const distortion = Math.sin(angle * 4) * 40 + Math.cos(angle * 3) * 30;
+        const radius = (Math.random() * 120) + distortion;
+        
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+
+        particles.push({
+          x: x,
+          y: y,
+          baseX: x,
+          baseY: y,
+          size: Math.random() * 3 + 1, // Varying sizes for depth
+          driftAngle: Math.random() * Math.PI * 2,
+          driftSpeed: Math.random() * 0.02
+        });
+      }
+    };
+
+    setSize();
+    window.addEventListener('resize', setSize);
+
+    const handleMouseMove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current.x = e.clientX - rect.left;
+      mouseRef.current.y = e.clientY - rect.top;
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current.x = -1000;
+      mouseRef.current.y = -1000;
+    };
+
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const mouse = mouseRef.current;
+
+      // Update and Draw particles
+      particles.forEach(p => {
+        // Subtle idle drifting
+        p.driftAngle += p.driftSpeed;
+        const idleX = p.baseX + Math.cos(p.driftAngle) * 5;
+        const idleY = p.baseY + Math.sin(p.driftAngle) * 5;
+
+        // Interaction physics
+        let dx = mouse.x - p.x;
+        let dy = mouse.y - p.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+        let forceDirectionX = dx / distance;
+        let forceDirectionY = dy / distance;
+        let maxDistance = mouse.radius;
+        let force = (maxDistance - distance) / maxDistance;
+        let directionX = forceDirectionX * force * 15;
+        let directionY = forceDirectionY * force * 15;
+
+        if (distance < mouse.radius) {
+          p.x -= directionX;
+          p.y -= directionY;
+        } else {
+          // Spring back to idle position
+          p.x -= (p.x - idleX) * 0.08;
+          p.y -= (p.y - idleY) * 0.08;
+        }
+
+        // Draw node
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = '#00e5ff'; // Neon cyan color
+        ctx.fill();
+      });
+
+      // Draw connecting mesh lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i; j < particles.length; j++) {
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 35) { // Connection threshold
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 229, 255, ${1 - distance/35})`; // Fades out over distance
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', setSize);
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return (
+    <div className="relative w-full h-[400px] lg:h-[500px] flex justify-center items-center group cursor-crosshair">
+      {/* Subtle backdrop glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-neon/10 blur-[100px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-neon/30"></div>
+      <canvas ref={canvasRef} className="w-full h-full relative z-10" />
+    </div>
+  );
+}
+
 function AboutContactForm() {
   return (
     <div className="max-w-[800px] mx-auto w-full px-8 pb-32 pt-16">
@@ -522,7 +682,6 @@ function SkillCategory({ title, skills }) {
   );
 }
 
-// ORIGINAL COMPONENT: Kept here for the Home page
 function ContactSection() {
   return (
     <div className="max-w-[1200px] mx-auto flex flex-col items-center justify-center text-center space-y-8 px-8 pb-12 pt-16">
