@@ -621,6 +621,7 @@ function InteractiveMesh() {
 }
 
 // ABOUT PAGE CONTACT FORM (WITH FETCH API LOGIC)
+// ABOUT PAGE CONTACT FORM (USING WEB3FORMS)
 function AboutContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -632,16 +633,25 @@ function AboutContactForm() {
     setStatus('loading');
 
     try {
-      // REPLACE THIS URL WITH YOUR ACTUAL RENDER BACKEND URL
-      const response = await fetch('https://portfolio-750l.onrender.com/send', {
-        method: 'POST',
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({
+          // PASTE YOUR WEB3FORMS ACCESS KEY HERE
+          access_key: "6b4230fe-c567-49bb-aec8-b35365409ed8",
+          name: name,
+          email: email,
+          message: message,
+          subject: `Portfolio Contact from ${name}`, // Custom email subject
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         setStatus('success');
         setName('');
         setEmail('');
@@ -650,10 +660,12 @@ function AboutContactForm() {
         // Reset success message after 3 seconds
         setTimeout(() => setStatus('idle'), 3000);
       } else {
+        console.error("Web3Forms Error:", result);
         setStatus('error');
         setTimeout(() => setStatus('idle'), 3000);
       }
     } catch (error) {
+      console.error("Fetch Error:", error);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 3000);
     }
