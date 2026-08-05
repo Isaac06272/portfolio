@@ -232,7 +232,7 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
                 description="Real-time student engagement detection system using trained AI models."
                 active={false}
                 imgSrc="iskomate.png"
-                projectLink="https://iskomate-website-57w8w7e0p-isaac06272s-projects.vercel.app/"
+                projectLink="https://iskomate-website.vercel.app/"
                 showCaseStudy={true}
                 onCaseStudyClick={() => {
                   setActiveTab('Projects');
@@ -334,7 +334,7 @@ function ProjectsContent() {
           desc="An advanced computer vision system designed to detect and monitor student engagement levels in real-time. It streams webcam data from edge devices (Raspberry Pi) securely via Tailscale to a central laptop server running classification models. The system logs attention metrics directly to a customized database."
           tags={['Python', 'Computer Vision', 'Raspberry Pi', 'Tailscale', 'Flutter']}
           imgSrc="iskomate.png"
-          projectLink="https://iskomate-website-57w8w7e0p-isaac06272s-projects.vercel.app/" 
+          projectLink="https://iskomate-website.vercel.app/" 
           sourceLink="https://github.com/Isaac06272/iskomate-app"
         />
 
