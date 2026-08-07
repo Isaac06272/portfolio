@@ -359,17 +359,7 @@ function ProjectsContent() {
             tags={['Python', 'Streamlit', 'Computer Vision']}
             sourceLink="https://github.com/Isaac06272/riceguard"
           />
-          <ProjectCard 
-            title="Clipforge" 
-            year="2026"
-            description="An AI-powered video automation tool that streamlines the editing pipeline. It analyzes raw footage to programmatically extract highlights and generate polished social media clips."
-            active={false}
-            imgSrc="clipforge.png"
-            showCaseStudy={false}
-            projectLink="https://github.com/Isaac06272/clipforge"
-            tags={['Python', 'AI Models', 'Automation']}
-            sourceLink="https://github.com/Isaac06272/clipforge"
-          />
+          
         </div>
       </section>
     </div>
