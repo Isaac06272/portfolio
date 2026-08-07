@@ -4,6 +4,7 @@ import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight, FiPlay, FiCo
 function App() {
   const [showNav, setShowNav] = useState(false);
   const [activeTab, setActiveTab] = useState('Home');
+  const [showCopyToast, setShowCopyToast] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +24,8 @@ function App() {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('johngwenisaacaustria@gmail.com');
-    alert('Email copied to clipboard!');
+    setShowCopyToast(true);
+    setTimeout(() => setShowCopyToast(false), 2000);
   };
 
   return (
@@ -73,8 +75,11 @@ function App() {
         {activeTab === 'Projects' && <ProjectsContent />}
         {activeTab === 'Skills' && <SkillsContent />}
         {/* {activeTab === 'Certifications' && <CertificationsContent />} */}
-        {activeTab === 'About' && <AboutContent />}
+        {activeTab === 'About' && <AboutContent handleCopyEmail={handleCopyEmail} />}
       </div>
+
+      {/* TOAST NOTIFICATION */}
+      {showCopyToast && <CopyToast />}
 
       {/* GLOBAL FOOTER (Simple bar for all pages) */}
       <footer className="w-full max-w-[1700px] mx-auto px-8 lg:px-16 py-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-gray-800 mt-auto relative z-10 bg-[#0b0c13]/80 backdrop-blur-sm">
@@ -272,9 +277,9 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
           </section>
         </div>
         
-        {/* CONTACT SECTION ON HOME PAGE */}
+        {/* CONTACT FORM SECTION ON HOME PAGE */}
         <div className="w-full bg-transparent pt-16">
-          <ContactSection setActiveTab={setActiveTab} />
+          <AboutContactForm />
         </div>
       </div>
     </>
@@ -535,7 +540,7 @@ function CertificationsContent() {
 }
 
 // 4. ABOUT PAGE
-function AboutContent() {
+function AboutContent({ handleCopyEmail }) {
   return (
     <div className="w-full min-h-screen pb-16 relative z-10">
       <section className="max-w-[1200px] mx-auto pt-24 px-8 lg:px-12">
@@ -594,16 +599,16 @@ function AboutContent() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {/* Email */}
-            <a 
-              href="mailto:johngwenisaacaustria@gmail.com"
-              className="group p-8 bg-[#11121a]/40 border border-gray-800/50 rounded-xl hover:border-neon/50 hover:bg-[#11121a]/80 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center justify-center text-center"
+            <button 
+              onClick={handleCopyEmail}
+              className="group p-8 bg-[#11121a]/40 border border-gray-800/50 rounded-xl hover:border-neon/50 hover:bg-[#11121a]/80 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center justify-center text-center cursor-pointer"
             >
               <FiMail size={32} className="text-neon mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-lg font-bold font-sans mb-2">Email</h3>
               <p className="text-gray-400 font-mono text-sm break-all hover:text-neon transition-colors">
                 johngwenisaacaustria@gmail.com
               </p>
-            </a>
+            </button>
 
             {/* GitHub */}
             <a 
@@ -666,6 +671,22 @@ function AboutContent() {
 /* =========================================
    HELPER COMPONENTS
    ========================================= */
+
+// COPY TOAST NOTIFICATION COMPONENT
+function CopyToast() {
+  return (
+    <div className="fixed top-8 left-1/2 -translate-x-1/2 z-[9999] animate-in fade-in slide-in-from-top-4 duration-300">
+      <div className="flex items-center gap-3 px-6 py-3 bg-[#11121a] border border-neon/50 rounded-full shadow-[0_10px_30px_rgba(0,229,255,0.2)] backdrop-blur-sm">
+        <div className="flex items-center justify-center">
+          <svg className="w-5 h-5 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <span className="text-white font-mono text-sm font-semibold">Email copied to clipboard!</span>
+      </div>
+    </div>
+  );
+}
 
 // INTERACTIVE MESH COMPONENT
 function InteractiveMesh() {
