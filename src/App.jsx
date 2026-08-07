@@ -18,7 +18,8 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['Home', 'Projects', 'Certifications', 'About'];
+  const navItems = ['Home', 'Projects', 'Skills', 'About'];
+  // const navItems = ['Home', 'Projects', 'Certifications', 'About']; // Certifications commented out - will re-add later
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('johngwenisaacaustria@gmail.com');
@@ -70,7 +71,8 @@ function App() {
       <div className="flex-grow relative z-10">
         {activeTab === 'Home' && <HomeContent setActiveTab={setActiveTab} handleCopyEmail={handleCopyEmail} />}
         {activeTab === 'Projects' && <ProjectsContent />}
-        {activeTab === 'Certifications' && <CertificationsContent />}
+        {activeTab === 'Skills' && <SkillsContent />}
+        {/* {activeTab === 'Certifications' && <CertificationsContent />} */}
         {activeTab === 'About' && <AboutContent />}
       </div>
 
@@ -366,7 +368,126 @@ function ProjectsContent() {
   );
 }
 
-// 3. CERTIFICATIONS PAGE
+// 3. SKILLS PAGE
+function SkillsContent() {
+  const skillCategories = [
+    {
+      category: 'Languages',
+      skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'SQL', 'HTML/CSS']
+    },
+    {
+      category: 'Frontend',
+      skills: ['React', 'Tailwind CSS', 'Next.js', 'Vue.js', 'Responsive Design', 'UI/UX']
+    },
+    {
+      category: 'Backend',
+      skills: ['Node.js', 'Express.js', 'Python FastAPI', 'Flask', 'RESTful APIs', 'Microservices']
+    },
+    {
+      category: 'Machine Learning & AI',
+      skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LLMs', 'Data Analysis', 'Neural Networks']
+    },
+    {
+      category: 'Cloud & DevOps',
+      skills: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'CI/CD', 'Linux']
+    },
+    {
+      category: 'Databases',
+      skills: ['PostgreSQL', 'MongoDB', 'Firebase', 'Redis', 'Elasticsearch', 'Data Modeling']
+    }
+  ];
+
+  return (
+    <div className="w-full bg-transparent min-h-[70vh] pb-16">
+      <section className="max-w-[1200px] mx-auto pt-24 px-8 lg:px-12">
+        {/* Header */}
+        <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-8">
+          <span className="w-12 h-[1px] bg-gray-700"></span>
+          Skills & Technologies
+        </div>
+        <h1 className="text-5xl lg:text-7xl font-bold font-sans mb-16">
+          Technical Expertise
+        </h1>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {skillCategories.map((categoryObj, idx) => (
+            <div
+              key={idx}
+              className="group relative p-6 bg-[#11121a]/40 border border-gray-800/50 rounded-xl hover:border-neon/50 hover:bg-[#11121a]/80 transition-all duration-300 hover:-translate-y-2"
+            >
+              {/* Category Title */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-2 h-2 rounded-full bg-neon"></div>
+                <h2 className="text-xl font-bold font-sans text-white group-hover:text-neon transition-colors">
+                  {categoryObj.category}
+                </h2>
+              </div>
+
+              {/* Skills List */}
+              <div className="flex flex-wrap gap-3">
+                {categoryObj.skills.map((skill, skillIdx) => (
+                  <span
+                    key={skillIdx}
+                    className="px-3 py-1.5 bg-[#0b0c13]/60 border border-gray-700/60 rounded-full text-sm font-mono text-gray-300 hover:text-neon hover:border-neon transition-all duration-200 cursor-default group-hover:border-gray-600"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Additional Info Section */}
+        <div className="mt-20 pt-16 border-t border-gray-800">
+          <div className="space-y-8">
+            <div className="group cursor-default">
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-neon font-mono text-sm">01</span>
+                <h3 className="text-2xl lg:text-3xl font-bold font-sans group-hover:text-neon transition-colors">
+                  Continuously Learning
+                </h3>
+              </div>
+              <p className="text-gray-400 font-sans text-lg leading-relaxed ml-12">
+                I stay updated with the latest technologies and best practices in software development, machine learning, and cloud computing.
+              </p>
+            </div>
+
+            <div className="group cursor-default">
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-neon font-mono text-sm">02</span>
+                <h3 className="text-2xl lg:text-3xl font-bold font-sans group-hover:text-neon transition-colors">
+                  Full-Stack Development
+                </h3>
+              </div>
+              <p className="text-gray-400 font-sans text-lg leading-relaxed ml-12">
+                From frontend interfaces to backend systems, I can handle all layers of modern web applications with a focus on clean code and scalability.
+              </p>
+            </div>
+
+            <div className="group cursor-default">
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-neon font-mono text-sm">03</span>
+                <h3 className="text-2xl lg:text-3xl font-bold font-sans group-hover:text-neon transition-colors">
+                  AI & Machine Learning
+                </h3>
+              </div>
+              <p className="text-gray-400 font-sans text-lg leading-relaxed ml-12">
+                Experience with building ML models, training neural networks, and integrating AI solutions into production applications.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+/* ========================================= 
+   CERTIFICATIONS PAGE (COMMENTED OUT)
+   ========================================= */
+// 4. CERTIFICATIONS PAGE (ARCHIVED - Will be re-added to portfolio later)
 function CertificationsContent() {
   return (
     <div className="w-full bg-transparent min-h-[70vh] pb-16">
@@ -463,37 +584,81 @@ function AboutContent() {
 
         </div>
         
-        {/* BOTTOM ROW: Skills Grid mapped from CV */}
+        {/* CONTACT INFORMATION SECTION */}
         <div className="mb-24">
-          <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-12 justify-center">
+          <div className="flex items-center gap-4 text-gray-500 font-mono text-sm tracking-widest uppercase mb-16 justify-center">
             <span className="w-12 h-[1px] bg-gray-700"></span>
-            Tech Stack
+            Get In Touch
             <span className="w-12 h-[1px] bg-gray-700"></span>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <SkillCategory 
-              title="Languages & Web" 
-              skills={['Python', 'JavaScript', 'React', 'Tailwind CSS', 'Flutter', 'HTML/CSS']} 
-            />
-            <SkillCategory 
-              title="Data & Backend" 
-              skills={['Node.js', 'Flask', 'Firebase', 'SQLite', 'SQLCipher']} 
-            />
-            <SkillCategory 
-              title="Vision & ML" 
-              skills={['OpenCV', 'MediaPipe', 'YOLOv8', 'TFLite', 'Scikit-learn']} 
-            />
-            <SkillCategory 
-              title="Tools & Platforms" 
-              skills={['Git/GitHub', 'Vercel', 'Render', 'Streamlit', 'Figma']} 
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            {/* Email */}
+            <a 
+              href="mailto:johngwenisaacaustria@gmail.com"
+              className="group p-8 bg-[#11121a]/40 border border-gray-800/50 rounded-xl hover:border-neon/50 hover:bg-[#11121a]/80 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center justify-center text-center"
+            >
+              <FiMail size={32} className="text-neon mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg font-bold font-sans mb-2">Email</h3>
+              <p className="text-gray-400 font-mono text-sm break-all hover:text-neon transition-colors">
+                johngwenisaacaustria@gmail.com
+              </p>
+            </a>
+
+            {/* GitHub */}
+            <a 
+              href="https://github.com/Isaac06272"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-8 bg-[#11121a]/40 border border-gray-800/50 rounded-xl hover:border-neon/50 hover:bg-[#11121a]/80 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center justify-center text-center"
+            >
+              <FiGithub size={32} className="text-neon mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg font-bold font-sans mb-2">GitHub</h3>
+              <p className="text-gray-400 font-mono text-sm hover:text-neon transition-colors">
+                @Isaac06272
+              </p>
+            </a>
+
+            {/* LinkedIn */}
+            <a 
+              href="https://www.linkedin.com/in/johngwenisaacaustria/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-8 bg-[#11121a]/40 border border-gray-800/50 rounded-xl hover:border-neon/50 hover:bg-[#11121a]/80 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center justify-center text-center"
+            >
+              <FiLinkedin size={32} className="text-neon mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg font-bold font-sans mb-2">LinkedIn</h3>
+              <p className="text-gray-400 font-mono text-sm hover:text-neon transition-colors">
+                John Gwen Isaac
+              </p>
+            </a>
+
+            {/* Instagram */}
+            <a 
+              href="https://www.instagram.com/_jmbzc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-8 bg-[#11121a]/40 border border-gray-800/50 rounded-xl hover:border-neon/50 hover:bg-[#11121a]/80 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center justify-center text-center"
+            >
+              <FiInstagram size={32} className="text-neon mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg font-bold font-sans mb-2">Instagram</h3>
+              <p className="text-gray-400 font-mono text-sm hover:text-neon transition-colors">
+                @_jmbzc
+              </p>
+            </a>
+          </div>
+
+          {/* Additional message */}
+          <div className="mt-16 text-center max-w-2xl mx-auto">
+            <p className="text-gray-400 text-lg font-sans leading-relaxed">
+              Feel free to reach out for collaborations, project inquiries, or just to connect. I'm always interested in discussing interesting projects and ideas!
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Styled Form for the About page */}
-      <AboutContactForm />
+      {/* Styled Form for the About page - COMMENTED OUT (using direct contact links instead) */}
+      {/* <AboutContactForm /> */}
     </div>
   );
 }
