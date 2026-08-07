@@ -179,7 +179,7 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
             <div className="group flex flex-col md:flex-row justify-between items-center gap-16 md:gap-8 w-full">
               <StatItem number="22" label="Age" />
               <StatItem number="2" label={<span>Years of<br/>experience</span>} />
-              <StatItem number="9" label={<span>Personal<br/>projects</span>} />
+              <StatItem number="6" label={<span>Personal<br/>projects</span>} />
               <StatItem number="2" label={<span>Companies<br/>interned</span>} />
             </div>
           </section>
@@ -378,27 +378,27 @@ function SkillsContent() {
   const skillCategories = [
     {
       category: 'Languages',
-      skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'SQL', 'HTML/CSS']
+      skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'HTML/CSS']
     },
     {
       category: 'Frontend',
-      skills: ['React', 'Tailwind CSS', 'Next.js', 'Vue.js', 'Responsive Design', 'UI/UX']
+      skills: ['React', 'Tailwind CSS', 'Next.js', 'Vue.js', 'Flutter']
     },
     {
       category: 'Backend',
-      skills: ['Node.js', 'Express.js', 'Python FastAPI', 'Flask', 'RESTful APIs', 'Microservices']
+      skills: ['Node.js', 'Express.js', 'Python FastAPI', 'Flask']
     },
     {
       category: 'Machine Learning & AI',
-      skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LLMs', 'Data Analysis', 'Neural Networks']
+      skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LLMs', 'Computer Vision', 'NLP', 'SVM']
     },
     {
-      category: 'Cloud & DevOps',
-      skills: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'CI/CD', 'Linux']
+      category: 'Tools & Platforms',
+      skills: ['Git/GitHub', 'Vercel', 'Render', 'Anaconda', 'Colab', 'Jupyter']
     },
     {
       category: 'Databases',
-      skills: ['PostgreSQL', 'MongoDB', 'Firebase', 'Redis', 'Elasticsearch', 'Data Modeling']
+      skills: ['PostgreSQL', 'MongoDB', 'Firebase', 'Redis', 'SQLite']
     }
   ];
 
@@ -558,10 +558,7 @@ function AboutContent({ handleCopyEmail }) {
               Engineering <br /> <span className="text-neon">at the edge.</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              I'm an academic student in Computer Engineering with a strong focus on hands-on software development, network protocols, and data experimentation.
-            </p>
-            <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              Whether I'm developing real-time computer vision models, managing routing protocols over Tailscale, or building scalable cross-platform applications in Flutter, I love bridging the gap between low-level architecture and intuitive software.
+              I'm obsessed with the challenge of building things that work seamlessly. From crafting responsive web apps to training computer vision models to designing mobile-first experiences. I love the entire journey from concept to deployment. Currently focused on AI engineering and cloud infrastructure.
             </p>
             <div className="pt-4">
               <a 
