@@ -366,7 +366,31 @@ function ProjectsContent() {
             tags={['Python', 'Streamlit', 'Computer Vision']}
             sourceLink="https://github.com/Isaac06272/riceguard"
           />
-          
+
+          <ProjectCard
+            title="Clipforge"
+            year="2026"
+            description="An AI-powered video editing agent that transforms long-form videos into short, viral-ready clips. Features smart highlight extraction, automatic caption generation, dynamic cropping, and an interactive caption editor for polishing each clip before export."
+            active={true}
+            imgSrc="clipforge.png"
+            showCaseStudy={false}
+            projectLink="https://clipforge-lovat-mu.vercel.app/"
+            tags={['React', 'Node.js', 'FFmpeg', 'Gemini API']}
+            sourceLink="https://github.com/Isaac06272/clipforge"
+          />
+
+          <ProjectCard
+            title="McDoc"
+            year="2026"
+            description="A cross-platform mobile application for managing prescriptions and medication schedules. Features real-time adherence tracking, daily dose reminders, and a scan-based prescription intake system for streamlined health management."
+            active={true}
+            imgSrc="mcdoc.png"
+            showCaseStudy={false}
+            projectLink="https://github.com/Isaac06272/McDoc"
+            tags={['TypeScript', 'Capacitor', 'Supabase', 'Android']}
+            sourceLink="https://github.com/Isaac06272/McDoc"
+          />
+
         </div>
       </section>
     </div>
