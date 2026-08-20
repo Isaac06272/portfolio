@@ -1,4 +1,4 @@
-# John Gwen Isaac Austria — Portfolio
+#Portfolio
 
 Personal portfolio website showcasing my projects, skills, and experience as an ML & AI Engineer, Cloud Engineer, and Full-Stack Developer.
 
