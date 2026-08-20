@@ -315,7 +315,7 @@ function ProjectsContent() {
           desc="A personal intelligence dashboard that delivers a hand-curated, AI-generated weekly digest of the most important developments in artificial intelligence and trending open-source repositories. Fully automated via Make automation that feed a Supabase backend."
           tags={['Next.js 14', 'TypeScript', 'Supabase', 'Make.com', 'TailwindCSS']}
           imgSrc="latech.png"
-          projectLink="https://latech-lac.vercel.app/"
+          projectLink="https://latech-three.vercel.app/"
           sourceLink="https://github.com/Isaac06272/latech"
         />
 
