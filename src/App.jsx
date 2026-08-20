@@ -210,7 +210,7 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
               <ProjectCard
                 title="LaTech"
                 year="2026"
-                description="Weekly AI & Tech Intelligence Digest — hand-curated, AI-generated summaries of the week's most important developments and trending repos."
+                description="Weekly AI & Tech Automation that uses Make to generate summaries of the week's most important developments and trending repos."
                 active={true}
                 imgSrc="latech.png"
                 projectLink="https://latech-lac.vercel.app/"
