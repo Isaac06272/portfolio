@@ -446,7 +446,7 @@ function SkillsContent() {
     },
     {
       category: 'Databases',
-      skills: ['PostgreSQL', 'MongoDB', 'Firebase', 'Redis', 'SQLite']
+      skills: ['Supabase', 'PostgreSQL', 'MongoDB', 'Firebase', 'Redis', 'SQLite']
     }
   ];
 
