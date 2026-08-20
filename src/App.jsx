@@ -305,47 +305,47 @@ function ProjectsContent() {
       </section>
 
       <section className="max-w-[1200px] mx-auto px-8 lg:px-12 py-12 flex flex-col gap-32">
-        
-        <FeaturedProject 
+
+        <FeaturedProject
           num="01"
+          year="2026"
+          title="LaTech"
+          active={true}
+          reverse={false}
+          desc="A personal intelligence dashboard that delivers a hand-curated, AI-generated weekly digest of the most important developments in artificial intelligence and trending open-source repositories. Fully automated via Make.com pipelines that feed a Supabase backend — the frontend is a thin, content-agnostic presentation layer that renders whatever the automation delivers."
+          tags={['Next.js 14', 'TypeScript', 'Supabase', 'Make.com', 'TailwindCSS']}
+          imgSrc="latech.png"
+          projectLink="https://latech-lac.vercel.app/"
+          sourceLink="https://github.com/Isaac06272/latech"
+        />
+
+        <FeaturedProject
+          num="02"
           year="2026"
           title="Nappr"
           active={true}
-          reverse={false}
+          reverse={true}
           desc="A precision location-based alarm application built for mobile platforms. Nappr utilizes real-time background geofencing to wake users up exactly when they arrive at their destination via public transit, leveraging low-power location APIs and local push notifications."
           tags={['Flutter', 'Dart', 'Geofencing APIs', 'Local Push']}
           imgSrc="nappr.png"
-          projectLink="https://github.com/Isaac06272/nappr" 
+          projectLink="https://github.com/Isaac06272/nappr"
           sourceLink="https://github.com/Isaac06272/nappr"
         />
 
-        <FeaturedProject 
-          num="02"
+        <FeaturedProject
+          num="03"
           year="2026"
           title="QuizCraft"
           active={true}
-          reverse={true}
+          reverse={false}
           desc="An AI-powered educational platform that automatically generates customized quizzes and flashcard decks from user-provided notes. Features dynamic difficulty scaling and progress tracking. Engineered the entire backend pipeline and built a scalable cross-platform UI for seamless student use."
           tags={['React', 'Node.js', 'LLM APIs', 'MongoDB', 'TailwindCSS']}
           imgSrc="quizcraft.png"
-          projectLink="https://quizcraft-one.vercel.app/" 
+          projectLink="https://quizcraft-one.vercel.app/"
           sourceLink="https://github.com/Isaac06272/quizcraft"
         />
 
-        <FeaturedProject 
-          num="03"
-          year="2026"
-          title="IskoMate"
-          active={false}
-          reverse={false} 
-          desc="An advanced computer vision system designed to detect and monitor student engagement levels in real-time. It streams webcam data from edge devices (Raspberry Pi) securely via Tailscale to a central laptop server running classification models. The system logs attention metrics directly to a customized database."
-          tags={['Python', 'Computer Vision', 'Raspberry Pi', 'Tailscale', 'Flutter']}
-          imgSrc="iskomate.png"
-          projectLink="https://iskomate-website.vercel.app/" 
-          sourceLink="https://github.com/Isaac06272/iskomate-app"
-        />
-
-      </section>
+        </section>
 
       {/* More Work Grid */}
       <section className="max-w-[1200px] mx-auto pt-32 pb-16 px-8 lg:px-12 border-t border-gray-800/50 mt-16">
@@ -355,8 +355,20 @@ function ProjectsContent() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ProjectCard 
-            title="RiceGuard" 
+          <ProjectCard
+            title="IskoMate"
+            year="2026"
+            description="An advanced computer vision system designed to detect and monitor student engagement levels in real-time. It streams webcam data from edge devices (Raspberry Pi) securely via Tailscale to a central laptop server running classification models. The system logs attention metrics directly to a customized database."
+            active={false}
+            imgSrc="iskomate.png"
+            showCaseStudy={false}
+            projectLink="https://iskomate-website.vercel.app/"
+            tags={['Python', 'Computer Vision', 'Raspberry Pi', 'Tailscale', 'Flutter']}
+            sourceLink="https://github.com/Isaac06272/iskomate-app"
+          />
+
+          <ProjectCard
+            title="RiceGuard"
             year="2026"
             description="An intelligent web application leveraging computer vision to monitor crop health. It analyzes field images to detect early signs of agricultural diseases, preventing yield loss and optimizing yields."
             active={true}
