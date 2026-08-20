@@ -391,6 +391,18 @@ function ProjectsContent() {
             sourceLink="https://github.com/Isaac06272/McDoc"
           />
 
+          <ProjectCard
+            title="VRUSH"
+            year="2026"
+            description="A full-stack AI video generation platform that turns simple text prompts into fully produced videos with text-to-speech narration and customizable, burned-in captions. Built with a modern, responsive UI to automate the video production pipeline for social media and content creation."
+            active={true}
+            imgSrc="vrush.png"
+            showCaseStudy={false}
+            projectLink="https://vrush-blond.vercel.app/"
+            tags={['React', 'Node.js', 'Google GenAI', 'FFmpeg']}
+            sourceLink="https://github.com/Isaac06272/vrush"
+          />
+
         </div>
       </section>
     </div>
