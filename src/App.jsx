@@ -178,8 +178,8 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
           <section className="max-w-[1400px] mx-auto flex flex-col justify-center px-8 lg:px-12 py-16">
             <div className="group flex flex-col md:flex-row justify-between items-center gap-16 md:gap-8 w-full">
               <StatItem number="22" label="Age" />
-              <StatItem number="2" label={<span>Years of<br/>experience</span>} />
-              <StatItem number="6" label={<span>Personal<br/>projects</span>} />
+              <StatItem number="3" label={<span>Years of<br/>experience</span>} />
+              <StatItem number="8" label={<span>Personal<br/>projects</span>} />
               <StatItem number="2" label={<span>Companies<br/>interned</span>} />
             </div>
           </section>
