@@ -207,8 +207,21 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <ProjectCard 
-                title="Nappr" 
+              <ProjectCard
+                title="LaTech"
+                year="2026"
+                description="Weekly AI & Tech Intelligence Digest — hand-curated, AI-generated summaries of the week's most important developments and trending repos."
+                active={true}
+                imgSrc="latech.png"
+                projectLink="https://latech-lac.vercel.app/"
+                showCaseStudy={true}
+                onCaseStudyClick={() => {
+                  setActiveTab('Projects');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+              <ProjectCard
+                title="Nappr"
                 year="2026"
                 description="Location-based alarm application with real-time geofencing and notifications."
                 active={true}
@@ -220,26 +233,13 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               />
-              <ProjectCard 
-                title="QuizCraft" 
+              <ProjectCard
+                title="QuizCraft"
                 year="2026"
                 description="AI-powered study platform that provides customized quizzes and flashcard decks."
                 active={true}
                 imgSrc="quizcraft.png"
                 projectLink="https://quizcraft-one.vercel.app/"
-                showCaseStudy={true}
-                onCaseStudyClick={() => {
-                  setActiveTab('Projects');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-              />
-              <ProjectCard 
-                title="IskoMate" 
-                year="2026"
-                description="Real-time student engagement detection system using trained AI models."
-                active={false}
-                imgSrc="iskomate.png"
-                projectLink="https://iskomate-website.vercel.app/"
                 showCaseStudy={true}
                 onCaseStudyClick={() => {
                   setActiveTab('Projects');
