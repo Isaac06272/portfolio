@@ -300,7 +300,7 @@ function ProjectsContent() {
           Things I've built, <br className="hidden md:block"/> end to end.
         </h1>
         <p className="text-gray-400 text-lg lg:text-xl max-w-2xl leading-relaxed">
-          Apps real people use, machine learning systems, data infrastructure, and independent academic research. Open any project for the full story.
+          Personal works that we use, machine learning systems, data infrastructure, and bachelor's academic research. Open any project to try and for the full source codes.
         </p>
       </section>
 
@@ -441,7 +441,7 @@ function SkillsContent() {
       skills: ['Node.js', 'Flask', 'Supabase', 'Firebase Firestore', 'MongoDB', 'SQLite', 'SQLCipher']
     },
     {
-      category: 'Computer Vision & Machine Learning',
+      category: 'CV & Machine Learning',
       skills: ['OpenCV', 'MediaPipe', 'YOLOv8', 'TFLite', 'Scikit-learn']
     },
     {
@@ -701,7 +701,7 @@ function AboutContent({ handleCopyEmail }) {
           {/* Additional message */}
           <div className="mt-16 text-center max-w-2xl mx-auto">
             <p className="text-gray-400 text-lg font-sans leading-relaxed">
-              Feel free to reach out for collaborations, project inquiries, or just to connect. I'm always interested in discussing interesting projects and ideas!
+              Feel free to reach out for job opportunities, project inquiries, or just to connect. I'm always interested in discussing interesting projects and ideas!
             </p>
           </div>
         </div>
