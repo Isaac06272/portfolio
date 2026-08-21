@@ -425,28 +425,28 @@ function ProjectsContent() {
 function SkillsContent() {
   const skillCategories = [
     {
+      category: 'AI & Automation',
+      skills: ['LLM Integration', 'Prompt Engineering', 'API Integration', 'Workflow Automation', 'Make', 'n8n']
+    },
+    {
       category: 'Languages',
-      skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'HTML/CSS']
+      skills: ['Python', 'TypeScript', 'JavaScript', 'Dart']
     },
     {
       category: 'Frontend',
-      skills: ['React', 'Tailwind CSS', 'Next.js', 'Vue.js', 'Flutter']
+      skills: ['Next.js', 'React', 'Flutter', 'HTML', 'CSS', 'Tailwind CSS', 'Vite', 'Capacitor']
     },
     {
-      category: 'Backend',
-      skills: ['Node.js', 'Express.js', 'Python FastAPI', 'Flask']
+      category: 'Backend & Databases',
+      skills: ['Node.js', 'Flask', 'Supabase', 'Firebase Firestore', 'MongoDB', 'SQLite', 'SQLCipher']
     },
     {
-      category: 'Machine Learning & AI',
-      skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LLMs', 'Computer Vision', 'NLP', 'SVM']
+      category: 'Computer Vision & Machine Learning',
+      skills: ['OpenCV', 'MediaPipe', 'YOLOv8', 'TFLite', 'Scikit-learn']
     },
     {
-      category: 'Tools & Platforms',
-      skills: ['Git/GitHub', 'Vercel', 'Render', 'Anaconda', 'Colab', 'Jupyter']
-    },
-    {
-      category: 'Databases',
-      skills: ['Supabase', 'PostgreSQL', 'MongoDB', 'Firebase', 'Redis', 'SQLite']
+      category: 'Cloud & Infrastructure',
+      skills: ['Git/GitHub', 'Vercel', 'Tailscale', 'Render', 'Docker']
     }
   ];
 
