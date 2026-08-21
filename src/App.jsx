@@ -150,7 +150,7 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
           </div>
           <div className="flex flex-wrap items-center gap-6 pt-6">
             <a 
-              href="/resume.pdf" 
+              href="/CV_Austria%2C%20John%20Gwen%20Isaac%20D.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="group flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono cursor-pointer"
@@ -610,7 +610,7 @@ function AboutContent({ handleCopyEmail }) {
             </p>
             <div className="pt-4">
               <a 
-                href="/resume.pdf" 
+                href="/CV_Austria%2C%20John%20Gwen%20Isaac%20D.pdf" 
                 download="John_Gwen_Isaac_Austria_CV.pdf"
                 className="flex items-center gap-3 border-2 border-neon rounded-full px-8 py-3 text-neon hover:bg-neon hover:text-black transition-colors duration-150 font-mono w-fit cursor-pointer"
               >
