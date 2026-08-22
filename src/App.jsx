@@ -603,10 +603,10 @@ function AboutContent({ handleCopyEmail }) {
           {/* Bio Text (Left) */}
           <div className="flex-1 flex flex-col justify-center">
             <h1 className="text-5xl lg:text-7xl font-bold font-sans mb-8 leading-tight">
-              Engineering <br /> <span className="text-neon">at the edge.</span>
+              Engineering <br /> <span className="text-neon">at edge.</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              I'm obsessed with the challenge of building things that work seamlessly. From crafting responsive web apps to training computer vision models to designing mobile-first experiences. I love the entire journey from concept to deployment. Currently focused on AI engineering and cloud infrastructure.
+              I am a computer engineering student focused on AI engineering, machine learning, automation, and cloud infrastructure. I build seamless applications that integrate computer vision models, cloud technologies, and modern web development, managing the entire lifecycle from concept to deployment. My projects span AI-powered systems, automated workflows, responsive full-stack applications, and mobile-first experiences.
             </p>
             <div className="pt-4">
               <a 
