@@ -145,7 +145,7 @@ function HomeContent({ setActiveTab, handleCopyEmail }) {
             </h1>
           </div>
           <div className="text-gray-400 space-y-2 text-base lg:text-lg font-mono leading-relaxed max-w-2xl">
-            <p>ML & AI Engineer | Cloud | Data Engineer</p>
+            <p>ML & AI Engineer | Automation | Cloud Engineer</p>
             <p>CpE | Philippines</p>
           </div>
           <div className="flex flex-wrap items-center gap-6 pt-6">
